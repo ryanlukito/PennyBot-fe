@@ -50,9 +50,7 @@ const NavBar = () => {
         />
         <h1 className="text-[1.042vw] font-bold text-black">Adam Miah</h1>
       </div>
-
-      {/*wrapper*/}
-      <div className="w-[11.367vw] h-[15.99vw] text-[1.042vw] font-bold mt-[2vw] flex flex-col justify-around items-center">
+      <div className="w-[11.367vw] h-[15.99vw] text-[1.042vw] font-bold mt-[2vw] flex flex-col justify-around items-start">
         {sources.map((client, index) => (
           <Link href={client.linkto} className="flex items-center" key={index}>
             <Image
@@ -66,6 +64,19 @@ const NavBar = () => {
           </Link>
         ))}
       </div>
+      <Link
+        href="/Login"
+        className="flex items-center justify-center absolute bottom-[2vw] left-[4.2vw]"
+      >
+        <Image
+          src="/image/logout.png"
+          width={10000}
+          height={10000}
+          alt="log out"
+          className="w-[1.563vw] h-[1.563vw] object-cover"
+        />
+        <h1 className="text-[1.042vw] font-bold ml-[0.5vw]">Log Out</h1>
+      </Link>
     </div>
   );
 };

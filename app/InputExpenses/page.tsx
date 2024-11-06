@@ -66,7 +66,7 @@ const page = () => {
           </button>
         </div>
       </div>
-      <div className="w-[26.302vw] h-[32.76vw] bg-[#E2ECEA] text-[1.042vw] mb-[3vw] flex items-center justify-center">
+      <div className="w-[26.302vw] h-[32.76vw] bg-[#E2ECEA] text-[1.042vw] mb-[3vw] flex items-center justify-center rounded-[0.521vw]">
         <button className="flex flex-col items-center justify-center">
           <FaPlus className="text-[4vw]" />
           <h1>Upload an Invoice</h1>

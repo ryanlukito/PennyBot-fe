@@ -4,14 +4,14 @@ import Link from "next/link";
 
 const page = () => {
   return (
-    <section className="bg-[#F7F7F9] w-screen min-h-screen relative text-black">
+    <section className="bg-[#F7F7F9] w-screen min-h-screen relative text-black overflow-hidden">
       <div className="w-[24.167vw] h-[8.385vw] py-[5vw] flex flex-col justify-center items-center ml-[12.656vw]">
         <h1 className="font-bold text-[#22B786] text-[3.646vw]">PennyTrack</h1>
         <p className="text-[#7a7575] text-[1.302vw]">
           Create Your Account to Start
         </p>
       </div>
-      <div className="w-[27.865vw] h-[34.896vw] flex flex-col items-center justify-between mt-[2vw] ml-[11vw]">
+      <div className="w-[27.865vw] h-[34.896vw] flex flex-col items-center justify-between ml-[11vw]">
         <div>
           <p className="text-[1.042vw] mb-[0.7vw]">Name*</p>
           <input
@@ -57,7 +57,7 @@ const page = () => {
             </p>
           </div>
         </div>
-        <button className="w-[19.271vw] h-[3.073vw] font-bold text-[0.938vw] rounded-[0.521vw] bg-[#92E1C7] shadow-sm shadow-gray-300 text-white hover:scale-[102%] ease-in-out duration-300">
+        <button className="w-[19.271vw] h-[3.073vw] font-bold text-[0.938vw] rounded-[0.521vw] bg-[#22B786] shadow-sm shadow-gray-300 text-white hover:scale-[102%] ease-in-out duration-300">
           Create your account
         </button>
       </div>

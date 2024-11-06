@@ -47,7 +47,7 @@ const page = () => {
           Login
         </button>
       </div>
-      <div className="w-[50vw] h-full z-[0] absolute top-0 right-0">
+      <div className="w-[50vw] h-screen z-[0] absolute top-0 right-0">
         <Image
           src="/image/bgLogin.png"
           width={10000}
