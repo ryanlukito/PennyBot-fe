@@ -4,7 +4,7 @@ import { FaPlus } from "react-icons/fa6";
 
 const page = () => {
   return (
-    <section className="bg-[#E2ECEA] w-screen h-screen relative text-black flex items-center">
+    <section className="bg-[#fff] w-screen h-screen relative text-black flex items-center">
       <NavBar></NavBar>
       <div className="h-full py-[1.6vw] px-[2vw]">
         <h1 className="text-[2.5vw] font-bold text-[#22B786]">New Expenses</h1>
@@ -13,35 +13,35 @@ const page = () => {
             <h1>Subject*</h1>
             <input
               type="text"
-              className="bg-[#E2ECEA] w-[31.771vw] h-[2.396vw] rounded-[0.521vw]"
+              className="bg-[#E2ECEA] w-[31.771vw] h-[2.396vw] rounded-[0.521vw] px-[1vw]"
             />
           </div>
           <div className="flex justify-between items-center">
             <h1>Merchant*</h1>
             <input
               type="text"
-              className="bg-[#E2ECEA] w-[31.771vw] h-[2.396vw] rounded-[0.521vw]"
+              className="bg-[#E2ECEA] w-[31.771vw] h-[2.396vw] rounded-[0.521vw] px-[1vw]"
             />
           </div>
           <div className="flex justify-between items-center">
             <h1>Date*</h1>
             <input
               type="text"
-              className="bg-[#E2ECEA] w-[31.771vw] h-[2.396vw] rounded-[0.521vw]"
+              className="bg-[#E2ECEA] w-[31.771vw] h-[2.396vw] rounded-[0.521vw] px-[1vw]"
             />
           </div>
           <div className="flex justify-between items-center">
             <h1>Total*</h1>
             <input
               type="text"
-              className="bg-[#E2ECEA] w-[31.771vw] h-[2.396vw] rounded-[0.521vw]"
+              className="bg-[#E2ECEA] w-[31.771vw] h-[2.396vw] rounded-[0.521vw] px-[1vw]"
             />
           </div>
           <div className="flex justify-between items-center">
             <h1>Category*</h1>
             <input
               type="text"
-              className="bg-[#E2ECEA] w-[31.771vw] h-[2.396vw] rounded-[0.521vw]"
+              className="bg-[#E2ECEA] w-[31.771vw] h-[2.396vw] rounded-[0.521vw] px-[1vw]"
             />
           </div>
           <div className="flex justify-between items-center">
@@ -58,7 +58,7 @@ const page = () => {
             </h1>
             <input
               type="text"
-              className="bg-[#E2ECEA] w-[31.771vw] h-[2.396vw] rounded-[0.521vw]"
+              className="bg-[#E2ECEA] w-[31.771vw] h-[2.396vw] rounded-[0.521vw] px-[1vw]"
             />
           </div>
           <button className="w-[8.177vw] h-[2.865vw] font-bold text-[1.042vw] rounded-[0.521vw] bg-[#22B786] text-white hover:scale-[102%] ease-in-out duration-300 ml-[7.7vw]">
@@ -66,7 +66,7 @@ const page = () => {
           </button>
         </div>
       </div>
-      <div className="w-[26.302vw] h-[32.76vw] bg-[#E2ECEA] text-[1.042vw] mb-[3vw] flex items-center justify-center rounded-[0.521vw]">
+      <div className="w-[26.302vw] h-[32.76vw] bg-[#E2ECEA] text-[1.042vw] mb-[4.1vw] flex items-center justify-center rounded-[0.521vw]">
         <button className="flex flex-col items-center justify-center">
           <FaPlus className="text-[4vw]" />
           <h1>Upload an Invoice</h1>
