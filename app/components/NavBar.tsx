@@ -38,7 +38,7 @@ const sources = [
 
 const NavBar = () => {
   return (
-    <div className="h-full w-[19.635vw] bg-[#F7F7F9] shadow-[0.208vw_0_0.208vw_rgba(0,0,0,0.3)] flex flex-col items-center relative">
+    <div className="h-screen w-[19.635vw] bg-[#F7F7F9] shadow-[0.208vw_0_0.208vw_rgba(0,0,0,0.3)] flex flex-col items-center relative">
       <div className="w-[11.615vw] h-[15.104vw] flex flex-col justify-between items-center mt-[1.5vw]">
         <h1 className="text-[1.667vw] font-bold text-[#22B786]">PennyTrack</h1>
         <Image

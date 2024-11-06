@@ -4,9 +4,9 @@ import { FaPlus } from "react-icons/fa6";
 
 const page = () => {
   return (
-    <section className="bg-[#F7F7F9] w-screen h-screen relative text-black flex items-center">
+    <section className="bg-[#E2ECEA] w-screen h-screen relative text-black flex items-center">
       <NavBar></NavBar>
-      <div className=" h-full py-[1.6vw] px-[2vw]">
+      <div className="h-full py-[1.6vw] px-[2vw]">
         <h1 className="text-[2.5vw] font-bold text-[#22B786]">New Expenses</h1>
         <div className="w-[39.323vw] h-[35vw] text-[1.042vw] mt-[2vw] flex flex-col justify-between">
           <div className="flex justify-between items-center">
