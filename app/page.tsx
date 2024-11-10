@@ -4,8 +4,8 @@ import InputExpenses from "./InputExpenses/page";
 export default function Home() {
   return (
     <>
-      {/* <Login></Login> */}
-      <InputExpenses></InputExpenses>
+      <Login></Login>
+      {/* <InputExpenses></InputExpenses> */}
     </>
   );
 }
