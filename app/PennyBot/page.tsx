@@ -10,6 +10,31 @@ type Message = {
   text: string;
 };
 
+function formatText(text: string): string {
+  // Menggantikan ** dengan tag <strong> untuk teks tebal
+  let formattedText = text.replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>");
+
+  // Mengubah item bahan yang diawali dengan '*' menjadi <ul><li>..</li></ul>
+  formattedText = formattedText.replace(/(\*\s.*?)(\r?\n|$)/g, "<li>$1</li>");
+  formattedText = formattedText.replace(/<li>/g, "<ul><li>").replace(/<\/li>/g, "</li></ul>");
+
+  // Memisahkan setiap langkah atau paragraf menjadi <p>..</p>
+  formattedText = formattedText.replace(/(\d+\.\s.*?)\:/g, "<p>$1:</p>");
+  
+  // Mengganti langkah-langkah dalam urutan nomor dengan <ol> dan <li>
+  formattedText = formattedText.replace(/(\d+\.\s)(.*?)(\r?\n|$)/g, "<li>$2</li>");
+  formattedText = formattedText.replace(/<li>/g, "<ol><li>").replace(/<\/li>/g, "</li></ol>");
+
+  // Memastikan bahwa list hanya memiliki satu <ul> atau <ol> di sekitar
+  formattedText = formattedText.replace(/<\/ul><ul>/g, "");
+  formattedText = formattedText.replace(/<\/ol><ol>/g, "");
+
+  // Menambahkan tag <br> untuk tiap line break yang tidak ditangani
+  formattedText = formattedText.replace(/\n/g, "<br>");
+
+  return formattedText;
+}
+
 const Page = () => {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
@@ -54,6 +79,7 @@ const Page = () => {
           text: data.response,
         };
         setMessages((prev) => [...prev, botMessage]);
+        console.log(botMessage.text);
       } else {
         const errorMessage: Message = {
           id: Date.now() + 1,
@@ -98,17 +124,17 @@ const Page = () => {
                     ? "bg-blue-500 text-white"
                     : "bg-gray-200 text-gray-800"
                 }`}
+                dangerouslySetInnerHTML={{__html: formatText(msg.text) }}
               >
-                {msg.text}
               </div>
             </div>
           ))}
           {loading && (
             <div className="flex justify-start mb-4">
-              <div className="flex space-x-1"></div>
-              <span className="block w-2 h-2 bg-gray-400 rounded-full animate-pulse"></span>
-              <span className="block w-2 h-2 bg-gray-400 rounded-full animate-pulse delay-200"></span>
-              <span className="block w-2 h-2 bg-gray-400 rounded-full animate-pulse delay-400"></span>
+              <div className="flex space-x-5"></div>
+              <span className="block mx-1 w-2 h-2 bg-gray-400 rounded-full animate-pulse"></span>
+              <span className="block mx-1 w-2 h-2 bg-gray-400 rounded-full animate-pulse delay-200"></span>
+              <span className="block mx-1 w-2 h-2 bg-gray-400 rounded-full animate-pulse delay-400"></span>
             </div>
           )}
           <div ref={messagesEndRef} />
@@ -128,7 +154,7 @@ const Page = () => {
           />
           <button
             type="submit"
-            className="ml-4 bg-blue-500 text-white p-2 rounded-full hover:bg-blue-600 focus:outline-none disabled:bg-blue-300"
+            className="ml-4 bg-blue-500 text-white p-2 rounded-xl hover:bg-blue-600 focus:outline-none disabled:bg-blue-300"
             disabled={loading}
           >
             Submit

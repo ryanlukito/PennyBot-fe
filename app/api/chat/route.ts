@@ -16,7 +16,7 @@ export async function POST(request: Request) {
       messages: [
         {
           role: "user",
-          content: message,
+          content: `${message} \nberikan response dalam bahasa indonesia`,
         },
       ],
       model: "llama3-8b-8192",
