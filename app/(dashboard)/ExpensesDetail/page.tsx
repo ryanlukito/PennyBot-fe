@@ -137,7 +137,7 @@ const Page = () => {
     <>
       <div className="bg-[#E2ECEA] w-screen h-screen text-black flex flex-start items-start">
         <NavBar />
-        <div className="mx-7 w-screen">
+        <div className="mx-5 w-screen">
           <div className="container mx-auto py-8">
             {/* Header */}
             <div className="flex justify-between items-center mb-6">
@@ -283,8 +283,8 @@ const Page = () => {
                     className={`px-4 py-2 rounded-lg ${
                       selectedCategory === category
                         ? "bg-[#22B786]"
-                        : "bg-gray-200"
-                    } hover:bg-[#22B786] text-black`}
+                        : "bg-gray-300"
+                    } hover:bg-[#22B786] text-black font-bold`}
                     onClick={() => handleCategoryClick(category)}
                   >
                     {category.charAt(0).toUpperCase() + category.slice(1)}
@@ -299,12 +299,13 @@ const Page = () => {
                 <thead className="bg-green-400">
                   <tr>
                     <th className="py-3 px-6 text-left">Subject</th>
-                    <th className="py-3 px-6 text-left">Description</th>
-                    <th className="py-3 px-6 text-left">Category</th>
-                    <th className="py-3 px-6 text-left">Payment Method</th>
-                    <th className="py-3 px-6 text-right">Total</th>
-                    <th className="py-3 px-6 text-right">Reimbursable</th>
-                    <th className="py-3 px-6 text-right">Date</th>
+                    <th className="py-3 px-2 text-center">Date</th>
+                    <th className="py-3 px-3 text-center">Category</th>
+                    <th className="py-3 px-6 text-center">Total</th>
+                    <th className="py-3 px-2 text-center">Payment Method</th>
+                    <th className="py-3 px-3 text-center">Reimbursable</th>
+                    <th className="py-3 px-6 text-center">Description</th>
+                    <th className="py-3 px-5 text-center">Button</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -312,17 +313,29 @@ const Page = () => {
                     paginatedExpenses.map((expense) => (
                       <tr key={expense._id} className="border-b">
                         <td className="py-4 px-6">{expense.subject}</td>
-                        <td className="py-4 px-6">{expense.description}</td>
-                        <td className="py-4 px-6">{expense.category}</td>
-                        <td className="py-4 px-6">{expense.payment_method}</td>
-                        <td className="py-4 px-6 text-right">
-                          ${expense.total.toFixed(2)}
+                        <td className="py-4 px-2 text-center">
+                          {format(new Date(expense.date), "MMM dd, yyyy")}
                         </td>
-                        <td className="py-4 px-6 text-right">
+                        <td className="py-4 px-3 text-center">
+                          {expense.category}
+                        </td>
+                        <td className="py-4 px-6 text-center">
+                          Rp{expense.total}
+                        </td>
+                        <td className="py-4 px-2 text-center">
+                          {expense.payment_method}
+                        </td>
+                        <td className="py-4 px-3 text-center">
                           {expense.reimbuse ? "Yes" : "No"}
                         </td>
-                        <td className="py-4 px-6 text-right">
-                          {format(new Date(expense.date), "MMM dd, yyyy")}
+                        <td className="py-4 px-6 text-center">
+                          {expense.description}
+                        </td>
+                        <td className="flex flex-col justify-between py-[0.4vw] px-[0.4vw] font-bold">
+                          <button className="mb-[0.2vw] bg-[#22B78680]">
+                            Edit
+                          </button>
+                          <button className="bg-[#FF8C8C]">Delete</button>
                         </td>
                       </tr>
                     ))
@@ -340,15 +353,17 @@ const Page = () => {
             {/* Pagination */}
             <div className="flex justify-end items-center mt-6">
               <button
-                className="px-4 py-2 bg-green-500 text-white rounded-xl hover:bg-green-600"
+                className="px-4 py-2 bg-white text-black rounded-[0.221vw] hover:bg-gray-100 border border-[#22B786]"
                 onClick={() => handlePageChange(currentPage - 1)}
                 disabled={currentPage === 1}
               >
                 Previous
               </button>
-              <span className="mx-4 text-3xl">{currentPage}</span>
+              <span className="mx-4 text-2xl px-[1.5vw] py-[0.2vw] bg-[#22B786] rounded-[0.221vw] text-white">
+                {currentPage}
+              </span>
               <button
-                className="px-7 py-2 bg-green-500 text-white rounded-xl hover:bg-green-600"
+                className="px-7 py-2 bg-white text-black rounded-[0.221vw] hover:bg-gray-100 border border-[#22B786]"
                 onClick={() => handlePageChange(currentPage + 1)}
                 disabled={
                   currentPage * expensesPerPage >= filteredExpenses.length
