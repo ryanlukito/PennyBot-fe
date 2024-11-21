@@ -22,10 +22,10 @@ const page = () => {
         </div>
         <div className="w-[69.531vw] h-[46vw] flex flex-col justify-between ml-[4.7vw] mt-[1.5vw]">
           <div className="w-full h-[25.031vw] flex justify-between">
-            <div className="w-[11.021vw] h-full flex flex-col justify-between">
-              <div className="w-full h-[5.604vw] bg-[#92E1C7] rounded-[0.521vw]"></div>
-              <div className="w-full h-[5.604vw] bg-[#C8CEF7] rounded-[0.521vw]"></div>
-              <div className="w-full h-[5.604vw] bg-[#F3BBBC] rounded-[0.521vw]"></div>
+            <div className="w-[13vw] h-full flex flex-col justify-between">
+              <div className="w-full h-[7vw] bg-[#92E1C7] rounded-[0.521vw]"></div>
+              <div className="w-full h-[7vw] bg-[#C8CEF7] rounded-[0.521vw]"></div>
+              <div className="w-full h-[7vw] bg-[#F3BBBC] rounded-[0.521vw]"></div>
             </div>
             <div className="w-[54.344vw] h-full bg-white rounded-[0.521vw]">
               ini bar chart

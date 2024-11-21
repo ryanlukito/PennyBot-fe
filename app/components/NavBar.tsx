@@ -3,7 +3,6 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
 
 const sources = [
   {
@@ -24,7 +23,7 @@ const sources = [
     src: "/image/expenses.png",
     width: "w-[1.563vw]",
     height: "h-[1.563vw]",
-    text: "Expenses",
+    text: "Input Expenses",
     linkto: "/InputExpenses",
   },
   {
@@ -33,6 +32,13 @@ const sources = [
     height: "h-[1.563vw]",
     text: "PennyBot",
     linkto: "/PennyBot",
+  },
+  {
+    src: "/image/Settings.png",
+    width: "w-[1.563vw]",
+    height: "h-[1.563vw]",
+    text: "Settings",
+    linkto: "/Settings",
   },
 ];
 
