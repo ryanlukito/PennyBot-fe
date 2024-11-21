@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import NavBar from "../components/NavBar";
+import NavBar from "@/app/components/NavBar";
 import { useState, useRef, useEffect, FormEvent } from "react";
 
 type Message = {
@@ -16,14 +16,21 @@ function formatText(text: string): string {
 
   // Mengubah item bahan yang diawali dengan '*' menjadi <ul><li>..</li></ul>
   formattedText = formattedText.replace(/(\*\s.*?)(\r?\n|$)/g, "<li>$1</li>");
-  formattedText = formattedText.replace(/<li>/g, "<ul><li>").replace(/<\/li>/g, "</li></ul>");
+  formattedText = formattedText
+    .replace(/<li>/g, "<ul><li>")
+    .replace(/<\/li>/g, "</li></ul>");
 
   // Memisahkan setiap langkah atau paragraf menjadi <p>..</p>
   formattedText = formattedText.replace(/(\d+\.\s.*?)\:/g, "<p>$1:</p>");
-  
+
   // Mengganti langkah-langkah dalam urutan nomor dengan <ol> dan <li>
-  formattedText = formattedText.replace(/(\d+\.\s)(.*?)(\r?\n|$)/g, "<li>$2</li>");
-  formattedText = formattedText.replace(/<li>/g, "<ol><li>").replace(/<\/li>/g, "</li></ol>");
+  formattedText = formattedText.replace(
+    /(\d+\.\s)(.*?)(\r?\n|$)/g,
+    "<li>$2</li>"
+  );
+  formattedText = formattedText
+    .replace(/<li>/g, "<ol><li>")
+    .replace(/<\/li>/g, "</li></ol>");
 
   // Memastikan bahwa list hanya memiliki satu <ul> atau <ol> di sekitar
   formattedText = formattedText.replace(/<\/ul><ul>/g, "");
@@ -124,9 +131,8 @@ const Page = () => {
                     ? "bg-blue-500 text-white"
                     : "bg-gray-200 text-gray-800"
                 }`}
-                dangerouslySetInnerHTML={{__html: formatText(msg.text) }}
-              >
-              </div>
+                dangerouslySetInnerHTML={{ __html: formatText(msg.text) }}
+              ></div>
             </div>
           ))}
           {loading && (

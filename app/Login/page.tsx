@@ -6,22 +6,28 @@ import Link from "next/link";
 import axios, { AxiosError } from "axios";
 import { useRouter } from "next/navigation";
 
-const page = () => {
+const LoginPage = () => {
   const { push } = useRouter();
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
+    const formElements = event.currentTarget
+      .elements as typeof event.currentTarget.elements & {
+      username: HTMLInputElement;
+      password: HTMLInputElement;
+    };
+
     const payload = {
-      username: event.currentTarget.username.value,
-      password: event.currentTarget.password.value,
+      username: formElements.username.value,
+      password: formElements.password.value,
     };
 
     try {
       const { data } = await axios.post("/api/auth/login", payload);
       alert(JSON.stringify(data));
       // redirect the user to /Overview
-      push("/Overview");
+      push("/");
     } catch (e) {
       const error = e as AxiosError;
       alert(error.message);
@@ -96,4 +102,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default LoginPage;

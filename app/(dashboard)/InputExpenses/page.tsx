@@ -1,5 +1,5 @@
 import React from "react";
-import NavBar from "../components/NavBar";
+import NavBar from "@/app/components/NavBar";
 import { FaPlus } from "react-icons/fa6";
 
 const page = () => {
