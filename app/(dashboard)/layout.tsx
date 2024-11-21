@@ -21,7 +21,7 @@ export default function PageLayout({
     (async () => {
       const { error } = await getUser();
       if (error) {
-        router.push("/");
+        router.push("/Login");
         return;
       }
       setIsSuccess(true);

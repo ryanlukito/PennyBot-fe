@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import NavBar from "../components/NavBar";
+import NavBar from "@/app/components/NavBar";
 import "tailwindcss/tailwind.css";
 import { FaCalendarAlt } from "react-icons/fa";
 import { format, addMonths, subMonths, addDays, startOfMonth } from "date-fns";

@@ -27,7 +27,7 @@ const LoginPage = () => {
       const { data } = await axios.post("/api/auth/login", payload);
       alert(JSON.stringify(data));
       // redirect the user to /Overview
-      push("/Overview");
+      push("/");
     } catch (e) {
       const error = e as AxiosError;
       alert(error.message);
