@@ -41,7 +41,7 @@ export default function PageLayout({
 
 async function getUser(): Promise<UserResponse> {
   try {
-    const { data } = await axios.get("https://api.ambagandalf.site/auth/me");
+    const { data } = await axios.get("/api/auth/me");
     return {
       user: data,
       auth: data.auth,
