@@ -24,9 +24,13 @@ const LoginPage = () => {
     };
 
     try {
-      const { data } = await axios.post("/api/auth/login", payload);
+      const { data } = await axios.post("http://localhost:4000/auth/login", payload, {
+        withCredentials: true,
+      });
       alert(JSON.stringify(data));
-      // redirect the user to /Overview
+      const token = data.token;
+      // document.cookie = `OurSiteJWT=${token}; path=/; Secure; HttpOnly; SameSite=Strict`;
+      console.log(`token ${token}`)
       push("/");
     } catch (e) {
       const error = e as AxiosError;

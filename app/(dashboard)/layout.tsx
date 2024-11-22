@@ -7,6 +7,7 @@ import { useState, useEffect } from "react";
 interface UserResponse {
   user: string | null;
   error: AxiosError | null;
+  auth: boolean | null;
 }
 
 export default function PageLayout({
@@ -19,12 +20,16 @@ export default function PageLayout({
 
   useEffect(() => {
     (async () => {
-      const { error } = await getUser();
+      const { error, auth } = await getUser();
       if (error) {
         router.push("/Login");
         return;
       }
-      setIsSuccess(true);
+      if (!auth){
+        setIsSuccess(false);
+      } else{
+        setIsSuccess(true);
+      }
     })();
   }, [router]);
 
@@ -39,12 +44,14 @@ async function getUser(): Promise<UserResponse> {
     const { data } = await axios.get("/api/auth/me");
     return {
       user: data,
+      auth: data.auth,
       error: null,
     };
   } catch (e) {
     const error = e as AxiosError;
     return {
       user: null,
+      auth: false,
       error,
     };
   }
