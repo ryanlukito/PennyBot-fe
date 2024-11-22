@@ -8,7 +8,7 @@ import {
 export const postExpenses = async (payload: InputExpensePayload) => {
   try {
     const response = await axios.post(
-      `http://localhost:4000/expense`, // nanti diganti
+      `https://tugas-akhir-paw-backend.vercel.app/expense`, // nanti diganti
       payload,
       { withCredentials: true }
     );
@@ -30,7 +30,7 @@ export const postExpenses = async (payload: InputExpensePayload) => {
 export const editExpenses = async (payload: EditExpensesPayload) => {
   try {
     const response = await axios.patch(
-      `http://localhost:4000/expense`, // nanti diganti
+      `https://tugas-akhir-paw-backend.vercel.app/expense`, // nanti diganti
       payload
     );
     console.log(`response from API: ${response}`);
@@ -51,7 +51,7 @@ export const editExpenses = async (payload: EditExpensesPayload) => {
 export const postUser = async (payload: SignUpPayload) => {
   try {
     const response = await axios.post(
-      `http://localhost:4000/register`, // nanti diganti
+      `https://tugas-akhir-paw-backend.vercel.app/register`, // nanti diganti
       payload
     );
     console.log(`response from API: ${response}`);
@@ -74,7 +74,7 @@ export const deleteExpense = async () => {};
 export const getExpenseDetail = async () => {
   try {
     const response = await axios.get(
-      `http://localhost:4000/expense` // nanti diganti
+      `https://tugas-akhir-paw-backend.vercel.app/expense` // nanti diganti
     );
     console.log(`response from API: ${response.data}`);
     return response.data;
@@ -94,7 +94,7 @@ export const getExpenseDetail = async () => {
 export const getOverview = async () => {
   try {
     const response = await axios.get(
-      `http://localhost:4000/expense/summary` // nanti diganti
+      `https://tugas-akhir-paw-backend.vercel.app/expense/summary` // nanti diganti
     );
     console.log(`response from API: ${response.data}`);
     return response.data;
