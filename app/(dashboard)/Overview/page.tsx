@@ -84,7 +84,7 @@ const OverviewPage: React.FC = () => {
       <NavBar />
       <div className="flex flex-col">
         <div className="w-[75.469vw] h-[2.813vw] flex items-center justify-between mt-[1vw] ml-[1vw]">
-          <div className="h-full flex items-center justify-center">
+          <div className="h-full flex flex-row items-center justify-center">
             <Image
               src="/image/overview.png"
               width={10000}
@@ -96,7 +96,7 @@ const OverviewPage: React.FC = () => {
           </div>
           <div className="w-[20vw] h-[2.813vw] bg-white rounded-[0.521vw]"></div>
         </div>
-        <div className="w-[69.531vw] h-[46vw] flex flex-col justify-between ml-[4.7vw] mt-[1.5vw]">
+        <div className="w-[69.531vw] h-[46vw] flex flex-col justify-around ml-[4.7vw] mt-[1vw]">
           <div className="w-full h-[25.031vw] flex justify-between">
             <div className="w-[13vw] h-full flex flex-col justify-between">
               <div className="w-full h-[7vw] bg-[#92E1C7] rounded-[0.521vw] p-[0.4vw]">
@@ -136,7 +136,7 @@ const OverviewPage: React.FC = () => {
               <BarChart data={data} options={options}></BarChart>
             </div>
           </div>
-          <div className="w-full h-[17vw] bg-white rounded-[0.521vw] mt-[1vw] px-[1vw] flex">
+          <div className="w-full h-[15vw] bg-white rounded-[0.521vw] mt-[1vw] px-[1vw] flex">
             <PieChart data={data2} options={options2}></PieChart>
           </div>
         </div>
