@@ -25,7 +25,7 @@ const LoginPage = () => {
 
     try {
       const { data } = await axios.post(
-        "https://tugas-akhir-paw-backend.vercel.app/auth/login",
+        "https://api.ambagandalf.site/auth/login",
         payload,
         {
           withCredentials: true,
