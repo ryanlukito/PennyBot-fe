@@ -3,11 +3,13 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import axios, { AxiosError } from "axios";
-import { useRouter } from "next/navigation";
+// import axios, { AxiosError } from "axios";
+// import { useRouter } from "next/navigation";
+import { postUser } from "@/app/connections/connectToDB";
+import { SignUpPayload } from "@/app/typesCollections/types";
 
 const SignUpPage = () => {
-  const { push } = useRouter();
+  // const { push } = useRouter();
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -20,21 +22,28 @@ const SignUpPage = () => {
       password: HTMLInputElement;
     };
 
-    const payload = {
+    const payload: SignUpPayload = {
       name: formElements.name.value,
       email: formElements.email.value,
-      telephone: formElements.telephone.value,
+      phone: formElements.telephone.value,
       password: formElements.password.value,
     };
 
+    // try {
+    //   const { data } = await axios.post("/api/auth/login", payload);
+    //   alert(JSON.stringify(data));
+    //   // redirect the user to /Overview
+    //   push("/Overview");
+    // } catch (e) {
+    //   const error = e as AxiosError;
+    //   alert(error.message);
+    // }
+
     try {
-      const { data } = await axios.post("/api/auth/login", payload);
-      alert(JSON.stringify(data));
-      // redirect the user to /Overview
-      push("/Overview");
-    } catch (e) {
-      const error = e as AxiosError;
-      alert(error.message);
+      const response = await postUser(payload);
+      console.log(`Response from API: ${response}`);
+    } catch (error) {
+      console.error("Error logging expense:", error);
     }
   };
 

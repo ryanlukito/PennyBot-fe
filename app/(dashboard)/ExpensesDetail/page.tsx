@@ -4,6 +4,8 @@ import NavBar from "@/app/components/NavBar";
 import "tailwindcss/tailwind.css";
 import { FaCalendarAlt } from "react-icons/fa";
 import { format, addMonths, subMonths, addDays, startOfMonth } from "date-fns";
+import Link from "next/link";
+// import { getExpenseDetail } from "@/app/connections/connectToDB";
 
 interface Expense {
   _id: string;
@@ -138,6 +140,14 @@ const ExpensesPage = () => {
       setDate({ from: date.from, to: day });
     }
   };
+
+  // try {
+  //   const response = getExpenseDetail();
+  //   console.log(`Response from API: ${response}`);
+  // } catch (error) {
+  //   console.log("gagal karena ga ada user_id");
+  //   console.error("Error logging expense:", error);
+  // }
 
   return (
     <>
@@ -338,9 +348,12 @@ const ExpensesPage = () => {
                           {expense.description}
                         </td>
                         <td className="flex flex-col justify-between py-[0.4vw] px-[0.4vw] font-bold">
-                          <button className="mb-[0.2vw] bg-[#22B78680]">
+                          <Link
+                            href="/EditExpenses"
+                            className="mb-[0.2vw] bg-[#22B78680] text-center"
+                          >
                             Edit
-                          </button>
+                          </Link>
                           <button
                             className="bg-[#FF8C8C]"
                             onClick={() => handleDeleteExpense(expense._id)}
