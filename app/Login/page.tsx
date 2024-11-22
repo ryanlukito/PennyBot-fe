@@ -32,8 +32,7 @@ const LoginPage = () => {
         }
       );
       alert(JSON.stringify(data));
-      const token = data.token;
-      console.log(`token ${token}`);
+      // redirect the user to /Overview
       push("/");
     } catch (e) {
       const error = e as AxiosError;

@@ -26,7 +26,6 @@ export async function GET() {
 
     const response = {
       message: "Super Top Secret User!",
-      auth: true,
     };
 
     return new Response(JSON.stringify(response), {
