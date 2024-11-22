@@ -25,6 +25,7 @@ export default function PageLayout({
         router.push("/Login");
         return;
       }
+      console.log(auth);
       if (!auth) {
         setIsSuccess(false);
       } else {
