@@ -91,9 +91,38 @@ const OverviewPage: React.FC = () => {
         <div className="w-[69.531vw] h-[46vw] flex flex-col justify-between ml-[4.7vw] mt-[1.5vw]">
           <div className="w-full h-[25.031vw] flex justify-between">
             <div className="w-[13vw] h-full flex flex-col justify-between">
-              <div className="w-full h-[7vw] bg-[#92E1C7] rounded-[0.521vw]"></div>
-              <div className="w-full h-[7vw] bg-[#C8CEF7] rounded-[0.521vw]"></div>
-              <div className="w-full h-[7vw] bg-[#F3BBBC] rounded-[0.521vw]"></div>
+              <div className="w-full h-[7vw] bg-[#92E1C7] rounded-[0.521vw] p-[0.4vw]">
+                <Image
+                  src="/image/tdesign_money.png"
+                  width={10000}
+                  height={10000}
+                  alt="profile picture"
+                  className="w-[2.135vw] h-[1.979vw]"
+                />
+                <h1 className="text-[0.938vw] text-[#484545]">Total Balance</h1>
+              </div>
+              <div className="w-full h-[7vw] bg-[#C8CEF7] rounded-[0.521vw] p-[0.4vw]">
+                <Image
+                  src="/image/solar_hand-money-linear.png"
+                  width={10000}
+                  height={10000}
+                  alt="profile picture"
+                  className="w-[1.927vw] h-[1.979vw]"
+                />
+                <h1 className="text-[0.938vw] text-[#484545]">Total Income</h1>
+              </div>
+              <div className="w-full h-[7vw] bg-[#F3BBBC] rounded-[0.521vw] p-[0.4vw]">
+                <Image
+                  src="/image/vaadin_money-withdraw.png"
+                  width={10000}
+                  height={10000}
+                  alt="profile picture"
+                  className="w-[1.771vw] h-[1.667vw]"
+                />
+                <h1 className="text-[0.938vw] text-[#484545]">
+                  Total Expenses
+                </h1>
+              </div>
             </div>
             <div className="w-[54.344vw] h-full bg-white rounded-[0.521vw] p-[3vw]">
               <BarChart data={data} options={options}></BarChart>
