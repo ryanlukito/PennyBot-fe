@@ -37,7 +37,7 @@ const InputExpensesPage = () => {
       <div className="h-full py-[1.6vw] px-[2vw]">
         <h1 className="text-[2.5vw] font-bold text-[#22B786]">New Expenses</h1>
         <form onSubmit={handleSubmit}>
-          <div className="w-[39.323vw] h-[35vw] text-[1.042vw] mt-[2vw] flex flex-col justify-between">
+          <div className="w-[39.323vw] h-[36vw] text-[1.042vw] mt-[2vw] flex flex-col justify-between">
             <div className="flex justify-between items-center">
               <h1>Subject</h1>
               <input
@@ -78,6 +78,12 @@ const InputExpensesPage = () => {
                 required
               />
             </div>
+            <div className="px-[7.5vw]">
+              <input type="checkbox" />
+              <label htmlFor="" className="ml-[0.3vw]">
+                Reimbursable
+              </label>
+            </div>
             <div className="flex justify-between items-center">
               <h1>Category</h1>
               <input
@@ -90,9 +96,8 @@ const InputExpensesPage = () => {
             </div>
             <div className="flex justify-between items-center">
               <h1>Description</h1>
-              <input
-                type="text"
-                className="bg-[#E2ECEA] w-[31.771vw] h-[5.938vw] rounded-[0.521vw]"
+              <textarea
+                className="bg-[#E2ECEA] w-[31.771vw] h-[5.938vw] rounded-[0.521vw] px-[1vw] resize-none"
                 id="description"
                 name="description"
                 required
