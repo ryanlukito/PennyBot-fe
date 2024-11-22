@@ -4,7 +4,7 @@ import React from "react";
 import NavBar from "@/app/components/NavBar";
 import { FaPlus } from "react-icons/fa6";
 
-const page = () => {
+const InputExpensesPage = () => {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
@@ -28,11 +28,12 @@ const page = () => {
       description: formElements.description.value,
       paymentMethod: formElements.paymentMethod.value,
     };
+    console.log(payload);
   };
 
   return (
     <section className="bg-[#fff] w-screen h-screen relative text-black flex items-center">
-      <NavBar></NavBar>
+      <NavBar />
       <div className="h-full py-[1.6vw] px-[2vw]">
         <h1 className="text-[2.5vw] font-bold text-[#22B786]">New Expenses</h1>
         <form onSubmit={handleSubmit}>
@@ -126,4 +127,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default InputExpensesPage;

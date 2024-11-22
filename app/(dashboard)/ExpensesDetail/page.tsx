@@ -17,7 +17,7 @@ interface Expense {
   payment_method: string;
 }
 
-const Page = () => {
+const ExpensesPage = () => {
   const dummyExpenses: Expense[] = Array.from({ length: 20 }, (_, i) => ({
     _id: `${i + 1}`,
     subject: `Dummy ${i + 1}`,
@@ -57,10 +57,10 @@ const Page = () => {
     setCurrentPage(page);
   };
 
-  const handleDateChange = (dates: { from?: Date; to?: Date }) => {
-    setDate(dates);
-    setCurrentPage(1);
-  };
+  // const handleDateChange = (dates: { from?: Date; to?: Date }) => {
+  //   setDate(dates);
+  //   setCurrentPage(1);
+  // };
 
   const filteredExpenses = expenses
     .filter((expense) => {
@@ -379,4 +379,4 @@ const Page = () => {
   );
 };
 
-export default Page;
+export default ExpensesPage;

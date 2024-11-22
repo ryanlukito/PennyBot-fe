@@ -1,4 +1,4 @@
-import Overview from "./Overview/page";
+import Overview from "@/app/(dashboard)/Overview/page";
 
 export default function Home() {
   return (
