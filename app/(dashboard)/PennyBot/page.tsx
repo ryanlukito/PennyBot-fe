@@ -110,7 +110,7 @@ const Page = () => {
 
   return (
     <div className="w-screen h-screen bg-[#E2ECEA] relative text-black flex">
-      <NavBar></NavBar>
+      <NavBar />
       <div className="w-[80.365vw] h-full flex flex-col bg-gray-100">
         <header className="bg-white shadow px-[1.5vw] py-[1.5vw]">
           <h1 className="text-[2.5vw] font-semibold text-gray-800">
