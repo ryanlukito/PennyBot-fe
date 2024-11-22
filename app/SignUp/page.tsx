@@ -6,6 +6,7 @@ import Link from "next/link";
 // import axios, { AxiosError } from "axios";
 // import { useRouter } from "next/navigation";
 import { postUser } from "@/app/connections/connectToDB";
+import { SignUpPayload } from "@/app/typesCollections/types";
 
 const SignUpPage = () => {
   // const { push } = useRouter();
@@ -21,10 +22,10 @@ const SignUpPage = () => {
       password: HTMLInputElement;
     };
 
-    const payload = {
+    const payload: SignUpPayload = {
       name: formElements.name.value,
       email: formElements.email.value,
-      telephone: formElements.telephone.value,
+      phone: formElements.telephone.value,
       password: formElements.password.value,
     };
 
@@ -40,7 +41,7 @@ const SignUpPage = () => {
 
     try {
       const response = await postUser(payload);
-      console.log(`Response from API: ${response.data}`);
+      console.log(`Response from API: ${response}`);
     } catch (error) {
       console.error("Error logging expense:", error);
     }

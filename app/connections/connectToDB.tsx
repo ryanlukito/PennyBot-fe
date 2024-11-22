@@ -9,9 +9,10 @@ export const postExpenses = async (payload: InputExpensePayload) => {
   try {
     const response = await axios.post(
       `http://localhost:4000/expense`, // nanti diganti
-      payload
+      payload,
+      { withCredentials: true }
     );
-    console.log(`response from API: ${response.data}`);
+    console.log(`response from API: ${response}`);
     return response.data;
   } catch (error) {
     if (axios.isAxiosError(error)) {
@@ -32,7 +33,7 @@ export const editExpenses = async (payload: EditExpensesPayload) => {
       `http://localhost:4000/expense`, // nanti diganti
       payload
     );
-    console.log(`response from API: ${response.data}`);
+    console.log(`response from API: ${response}`);
     return response.data;
   } catch (error) {
     if (axios.isAxiosError(error)) {
@@ -53,7 +54,7 @@ export const postUser = async (payload: SignUpPayload) => {
       `http://localhost:4000/register`, // nanti diganti
       payload
     );
-    console.log(`response from API: ${response.data}`);
+    console.log(`response from API: ${response}`);
     return response.data;
   } catch (error) {
     if (axios.isAxiosError(error)) {

@@ -24,9 +24,16 @@ const LoginPage = () => {
     };
 
     try {
-      const { data } = await axios.post("/api/auth/login", payload);
+      const { data } = await axios.post(
+        "http://localhost:4000/auth/login",
+        payload,
+        {
+          withCredentials: true,
+        }
+      );
       alert(JSON.stringify(data));
-      // redirect the user to /Overview
+      const token = data.token;
+      console.log(`token ${token}`);
       push("/");
     } catch (e) {
       const error = e as AxiosError;
@@ -75,12 +82,12 @@ const LoginPage = () => {
               required
             />
           </div>
-          <p className="text-[0.781vw] w-full mb-[1vw]">
+          <div className="text-[0.781vw] w-full mb-[1vw]">
             Doesn’t have any account yet?{" "}
             <Link href="/SignUp" className="font-bold">
               Sign Up Here
             </Link>
-          </p>
+          </div>
           <button
             type="submit"
             className="w-[19.271vw] h-[3.073vw] font-bold text-[1.302vw] rounded-[0.521vw] bg-[#22B786] shadow-sm shadow-gray-300 text-white hover:scale-[102%] ease-in-out duration-300"

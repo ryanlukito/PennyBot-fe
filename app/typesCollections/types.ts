@@ -13,7 +13,7 @@ export type InputExpensePayload = {
 export type SignUpPayload = {
   name: string;
   email: string;
-  telephone: string;
+  phone: string;
   password: string;
 };
 

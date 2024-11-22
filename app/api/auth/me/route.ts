@@ -7,6 +7,7 @@ import { NextResponse } from "next/server";
 export async function GET() {
   const cookieStore = cookies();
   const token = (await cookieStore).get(COOKIE_NAME);
+  console.log(token);
   if (!token) {
     return NextResponse.json(
       {
@@ -25,6 +26,7 @@ export async function GET() {
 
     const response = {
       message: "Super Top Secret User!",
+      auth: true,
     };
 
     return new Response(JSON.stringify(response), {
