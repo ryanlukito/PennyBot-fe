@@ -35,7 +35,7 @@ export async function GET() {
   } catch (e) {
     return NextResponse.json(
       {
-        message: "Something went wrong",
+        message: "Something went wrong!",
         e,
       },
       {
