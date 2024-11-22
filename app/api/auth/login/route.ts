@@ -36,7 +36,7 @@ export async function POST(request: Request) {
   const serialized = serialize(COOKIE_NAME, token, {
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",
-    sameSite: "lax",
+    sameSite: "none",
     maxAge: MAX_AGE,
     path: "/",
   });
