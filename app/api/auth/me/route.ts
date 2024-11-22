@@ -1,5 +1,5 @@
 import { COOKIE_NAME } from "@/constants";
-import { error } from "console";
+// import { error } from "console";
 import { verify } from "jsonwebtoken";
 import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
