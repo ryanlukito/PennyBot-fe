@@ -28,7 +28,7 @@ export default function PageLayout({
       console.log(auth);
       if (!auth) {
         setIsSuccess(false);
-      } else {
+      } else{
         setIsSuccess(true);
       }
     })();
