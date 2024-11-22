@@ -25,11 +25,11 @@ const LoginPage = () => {
 
     try {
       const { data } = await axios.post(
-        "http://localhost:4000/auth/login",
-        payload,
-        {
-          withCredentials: true,
-        }
+        "https://tugas-akhir-paw-backend.vercel.app/auth/login",
+        payload
+        // {
+        //   withCredentials: true,
+        // }
       );
       alert(JSON.stringify(data));
       const token = data.token;
