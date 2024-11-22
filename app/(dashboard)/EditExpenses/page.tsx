@@ -2,12 +2,11 @@
 
 import React from "react";
 import NavBar from "@/app/components/NavBar";
-import { FaPlus } from "react-icons/fa6";
-import { postExpenses } from "@/app/connections/connectToDB";
-// import Cookies from "js-cookie";
-import { InputExpensePayload } from "@/app/typesCollections/types";
+import { FaPlus } from "react-icons/fa";
+import { editExpenses } from "@/app/connections/connectToDB";
+import { EditExpensesPayload } from "@/app/typesCollections/types";
 
-const InputExpensesPage = () => {
+const EditExpenses = () => {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
@@ -17,30 +16,28 @@ const InputExpensesPage = () => {
       merchant: HTMLInputElement;
       date: HTMLInputElement;
       total: HTMLInputElement;
-      reimburse: HTMLInputElement;
       category: HTMLInputElement;
       description: HTMLInputElement;
       paymentMethod: HTMLInputElement;
     };
-    const payload: InputExpensePayload = {
+
+    const payload: EditExpensesPayload = {
       subject: formElements.subject.value,
       merchant: formElements.merchant.value,
       date: formElements.date.value,
       total: parseInt(formElements.total.value),
-      reimbuse: true,
       category: formElements.category.value,
       description: formElements.description.value,
       payment_method: formElements.paymentMethod.value,
-      invoice: "dummy",
     };
-
     console.log(payload);
 
     // Input expense into database
     try {
-      const response = await postExpenses(payload);
+      const response = await editExpenses(payload);
       console.log(`Response from API: ${response.data}`);
     } catch (error) {
+      console.log("gagal karena ga ada user_id");
       console.error("Error logging expense:", error);
     }
   };
@@ -49,7 +46,7 @@ const InputExpensesPage = () => {
     <section className="bg-[#fff] w-screen h-screen relative text-black flex items-center">
       <NavBar />
       <div className="h-full py-[1.6vw] px-[2vw]">
-        <h1 className="text-[2.5vw] font-bold text-[#22B786]">New Expenses</h1>
+        <h1 className="text-[2.5vw] font-bold text-[#22B786]">Edit Expenses</h1>
         <form onSubmit={handleSubmit}>
           <div className="w-[39.323vw] h-[36vw] text-[1.042vw] mt-[2vw] flex flex-col justify-between">
             <div className="flex justify-between items-center">
@@ -93,7 +90,7 @@ const InputExpensesPage = () => {
               />
             </div>
             <div className="px-[7.5vw]">
-              <input type="checkbox" id="reimburse" name="reimburse" />
+              <input type="checkbox" />
               <label htmlFor="" className="ml-[0.3vw]">
                 Reimbursable
               </label>
@@ -146,4 +143,4 @@ const InputExpensesPage = () => {
   );
 };
 
-export default InputExpensesPage;
+export default EditExpenses;
