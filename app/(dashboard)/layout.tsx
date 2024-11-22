@@ -20,17 +20,15 @@ export default function PageLayout({
 
   useEffect(() => {
     (async () => {
-      const { error, auth } = await getUser();
+      const { error } = await getUser();
       if (error) {
         router.push("/Login");
+        setIsSuccess(false);
+
         return;
       }
       // console.log(auth);
-      if (!auth) {
-        setIsSuccess(false);
-      } else {
-        setIsSuccess(true);
-      }
+      setIsSuccess(true);
     })();
   }, [router]);
 
