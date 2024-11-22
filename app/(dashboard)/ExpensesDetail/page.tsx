@@ -62,6 +62,12 @@ const ExpensesPage = () => {
   //   setCurrentPage(1);
   // };
 
+  // Add a function to delete an expense by ID
+  const handleDeleteExpense = (id: string) => {
+    const updatedExpenses = expenses.filter((expense) => expense._id !== id);
+    setExpenses(updatedExpenses);
+  };
+
   const filteredExpenses = expenses
     .filter((expense) => {
       if (selectedCategory !== "all") {
@@ -335,7 +341,12 @@ const ExpensesPage = () => {
                           <button className="mb-[0.2vw] bg-[#22B78680]">
                             Edit
                           </button>
-                          <button className="bg-[#FF8C8C]">Delete</button>
+                          <button
+                            className="bg-[#FF8C8C]"
+                            onClick={() => handleDeleteExpense(expense._id)}
+                          >
+                            Delete
+                          </button>
                         </td>
                       </tr>
                     ))
