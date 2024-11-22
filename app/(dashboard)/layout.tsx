@@ -25,7 +25,7 @@ export default function PageLayout({
         router.push("/Login");
         return;
       }
-      console.log(auth);
+      // console.log(auth);
       if (!auth) {
         setIsSuccess(false);
       } else {
@@ -43,6 +43,7 @@ export default function PageLayout({
 async function getUser(): Promise<UserResponse> {
   try {
     const { data } = await axios.get("/api/auth/me");
+    console.log(data);
     return {
       user: data,
       auth: data.auth,
