@@ -26,10 +26,10 @@ const LoginPage = () => {
     try {
       const { data } = await axios.post(
         "https://tugas-akhir-paw-backend.vercel.app/auth/login",
-        payload,
-        {
-          withCredentials: true,
-        }
+        payload
+        // {
+        //   withCredentials: true,
+        // }
       );
       alert(JSON.stringify(data));
       const token = data.token;

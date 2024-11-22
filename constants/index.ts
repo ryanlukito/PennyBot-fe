@@ -1,1 +1,1 @@
-export const COOKIE_NAME = "_vercel_jwt";
+export const COOKIE_NAME = "OurSiteJWT";
