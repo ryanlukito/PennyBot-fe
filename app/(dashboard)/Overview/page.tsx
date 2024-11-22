@@ -4,6 +4,7 @@ import Image from "next/image";
 import BarChart from "@/app/components/BarChart";
 import PieChart from "@/app/components/PieChart";
 import { ChartData, ChartOptions } from "chart.js";
+// import { getOverview } from "@/app/connections/connectToDB";
 
 const OverviewPage: React.FC = () => {
   const colorBase = "#22B786";
@@ -78,6 +79,14 @@ const OverviewPage: React.FC = () => {
       },
     },
   };
+
+  // try {
+  //   const response = getOverview();
+  //   console.log(`Response from API: ${response}`);
+  // } catch (error) {
+  //   console.log("gagal karena ga ada user_id");
+  //   console.error("Error logging expense:", error);
+  // }
 
   return (
     <section className="bg-[#E2ECEA] w-screen h-screen relative text-black flex flex-row overflow-hidden">
