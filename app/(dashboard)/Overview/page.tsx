@@ -1,12 +1,20 @@
-import React from "react";
+'use client'
+
+import React, {useEffect} from "react";
 import NavBar from "@/app/components/NavBar";
 import Image from "next/image";
 import BarChart from "@/app/components/BarChart";
 import PieChart from "@/app/components/PieChart";
 import { ChartData, ChartOptions } from "chart.js";
-// import { getOverview } from "@/app/connections/connectToDB";
+import { getOverview } from "@/app/connections/connectToDB";
 
 const OverviewPage: React.FC = () => {
+
+  useEffect(()=>{
+    const data = getOverview();
+    console.log(data);
+  }, []);
+  
   const colorBase = "#22B786";
   const data: ChartData<"bar"> = {
     labels: ["January", "February", "March", "April", "May"],

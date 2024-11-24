@@ -10,7 +10,7 @@ import {
 export const postExpenses = async (payload: InputExpensePayload) => {
   try {
     const response = await axios.post(
-      `https://api.ambagandalf.site/expense`, // nanti diganti
+      `https://api.ambagandalf.site/expense`,
       payload,
       { withCredentials: true }
     );
@@ -33,7 +33,8 @@ export const editExpenses = async (payload: EditExpensesPayload) => {
   try {
     const response = await axios.patch(
       `https://api.ambagandalf.site/expense`, // nanti diganti
-      payload
+      payload,
+      {withCredentials: true}
     );
     console.log(`response from API: ${response}`);
     return response.data;
@@ -54,7 +55,8 @@ export const postUser = async (payload: SignUpPayload) => {
   try {
     const response = await axios.post(
       `https://api.ambagandalf.site/register`, // nanti diganti
-      payload
+      payload,
+      {withCredentials: true}
     );
     console.log(`response from API: ${response}`);
     return response.data;
@@ -75,7 +77,8 @@ export const updateUser = async (payload: UpdateUserPayload) => {
   try {
     const response = await axios.patch(
       `https://api.ambagandalf.site/expense/summary`, // nanti diganti
-      payload
+      payload,
+      {withCredentials: true}
     );
     console.log(`response from API: ${response.data}`);
     return response.data;
@@ -96,7 +99,8 @@ export const updateIncome = async (payload: UpdateIncomePayload) => {
   try {
     const response = await axios.patch(
       `https://api.ambagandalf.site/expense/summary`, // nanti diganti
-      payload
+      payload,
+      {withCredentials: true}
     );
     console.log(`response from API: ${response.data}`);
     return response.data;
@@ -139,7 +143,8 @@ export const getExpenseDetail = async () => {
 export const getOverview = async () => {
   try {
     const response = await axios.get(
-      `https://api.ambagandalf.site/expense/summary` // nanti diganti
+      `https://api.ambagandalf.site/expense/summary`,  // nanti diganti
+      {withCredentials: true}
     );
     console.log(`response from API: ${response.data}`);
     return response.data;
