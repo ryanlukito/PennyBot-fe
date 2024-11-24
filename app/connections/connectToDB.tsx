@@ -32,7 +32,7 @@ export const postExpenses = async (payload: InputExpensePayload) => {
 export const editExpenses = async (payload: EditExpensesPayload) => {
   try {
     const response = await axios.patch(
-      `https://api.ambagandalf.site/expense`, // nanti diganti
+      `https://api.ambagandalf.site/expense/6742e056b01ea27900d11c28`, // nanti diganti
       payload,
       { withCredentials: true }
     );

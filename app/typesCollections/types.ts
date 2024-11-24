@@ -22,6 +22,7 @@ export type EditExpensesPayload = {
   merchant: string;
   date: string;
   total: number;
+  reimbuse: boolean;
   category: string;
   description: string;
   payment_method: string;

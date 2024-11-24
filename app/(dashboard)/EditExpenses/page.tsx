@@ -16,6 +16,7 @@ const EditExpenses = () => {
       merchant: HTMLInputElement;
       date: HTMLInputElement;
       total: HTMLInputElement;
+      reimburse: HTMLInputElement;
       category: HTMLInputElement;
       description: HTMLInputElement;
       paymentMethod: HTMLInputElement;
@@ -26,6 +27,7 @@ const EditExpenses = () => {
       merchant: formElements.merchant.value,
       date: formElements.date.value,
       total: parseInt(formElements.total.value),
+      reimbuse: true,
       category: formElements.category.value,
       description: formElements.description.value,
       payment_method: formElements.paymentMethod.value,
@@ -92,7 +94,7 @@ const EditExpenses = () => {
               />
             </div>
             <div className="px-[7.5vw]">
-              <input type="checkbox" />
+              <input type="checkbox" id="reimburse" name="reimburse" />
               <label htmlFor="" className="ml-[0.3vw]">
                 Reimbursable
               </label>
