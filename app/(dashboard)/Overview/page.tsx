@@ -14,15 +14,18 @@ const OverviewPage: React.FC = () => {
 
   useEffect(() => {
     const fetchData = async () => {
+      try {
         const data = await getOverview();
         setOverviewData(data);
+
+        console.log(overviewData)
+      } catch (error) {
+        console.error("Error fetching overview:", error);
+      }
     };
+
     fetchData();
   }, []);
-
-  useEffect(() => {
-    console.log(`from summary ${overviewData}`);
-  }, [overviewData]);
 
   const colorBase = "#22B786";
   const data: ChartData<"bar"> = {
