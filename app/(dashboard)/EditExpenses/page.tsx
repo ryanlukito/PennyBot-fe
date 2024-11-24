@@ -4,10 +4,9 @@ import React from "react";
 import NavBar from "@/app/components/NavBar";
 import { FaPlus } from "react-icons/fa";
 import { editExpenses } from "@/app/connections/connectToDB";
-import { EditExpensesPayload, id } from "@/app/typesCollections/types";
+import { EditExpensesPayload } from "@/app/typesCollections/types";
 
-const EditExpenses = (id: id) => {
-  console.log(id)
+const EditExpenses = () => {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
@@ -39,7 +38,7 @@ const EditExpenses = (id: id) => {
 
     // Input expense into database
     try {
-      const response = await editExpenses(payload, id);
+      const response = await editExpenses(payload);
       console.log(`Response from API: ${response.data}`);
       alert("Expense Update Successfully!");
     } catch (error) {

@@ -5,7 +5,6 @@ import {
   EditExpensesPayload,
   UpdateUserPayload,
   UpdateIncomePayload,
-  id,
 } from "@/app/typesCollections/types";
 
 export const postExpenses = async (payload: InputExpensePayload) => {
@@ -30,10 +29,10 @@ export const postExpenses = async (payload: InputExpensePayload) => {
   }
 };
 
-export const editExpenses = async (payload: EditExpensesPayload, id: id) => {
+export const editExpenses = async (payload: EditExpensesPayload) => {
   try {
     const response = await axios.patch(
-      `https://api.ambagandalf.site/expense/${id}`,
+      `https://api.ambagandalf.site/expense`,
       payload,
       { withCredentials: true }
     );

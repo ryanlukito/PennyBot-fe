@@ -42,6 +42,6 @@ export type UpdateIncomePayload = {
   income: number;
 };
 
-export type id = {
-  id: string
-}
+// export type id = {
+//   id: string
+// }
