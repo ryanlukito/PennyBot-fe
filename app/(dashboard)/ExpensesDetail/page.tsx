@@ -324,7 +324,7 @@ const ExpensesPage = () => {
                     <td className="px-4 py-2">{expense.total}</td>
                     <td className="px-4 py-2">
                       <Link
-                        href={`/EditExpenses`}
+                        href={`/EditExpenses?=${expense._id}`}
                         className="px-4 py-2 bg-yellow-500 text-white rounded-lg hover:bg-yellow-600"
                       >
                         Edit
