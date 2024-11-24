@@ -20,8 +20,7 @@ interface Expense {
 }
 
 const ExpensesPage = () => {
-  const [detailSummary, setDetailSummary] = useState<Expense | null>(null);
-  // const dummyExpenses: Expense[] = Array.from({ length: 20 }, (_, i) => ({
+    // const dummyExpenses: Expense[] = Array.from({ length: 20 }, (_, i) => ({
   //   _id: `${i + 1}`,
   //   subject: `Dummy ${i + 1}`,
   //   merchant: `Merchant ${i + 1}`,
@@ -40,41 +39,14 @@ const ExpensesPage = () => {
   //   payment_method: ["Cash", "Credit Card", "Debit Card"][i % 3],
   // }));
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const data = await getExpenseDetail();
-      setDetailSummary(data);
-    };
-    fetchData();
-  }, []);
 
-  console.log(detailSummary);
+  // useEffect(() => {
+  //   const data = getExpenseDetail();
+  //   console.log(data);
+  // }, []);
 
-  const dummyExpenses: Expense[] = Array.from({ length: 20 }, (_, i) => ({
-    _id: `${i + 1}`,
-    subject: `Dummy ${i + 1}`,
-    merchant: `Merchant ${i + 1}`,
-    date: new Date(2024, i % 12, i + 1).toISOString(),
-    total: Math.floor(Math.random() * 1000000),
-    reimbuse: i % 2 === 0,
-    category: [
-      "food",
-      "groceries",
-      "health",
-      "electricity",
-      "transportation",
-      "entertainment",
-    ][i % 6],
-    description: `Description for Dummy ${i + 1}`,
-    payment_method: ["Cash", "Credit Card", "Debit Card"][i % 3],
-  }));
-
-  useEffect(() => {
-    const data = getExpenseDetail();
-    console.log(data);
-  }, []);
-
-  const [expenses, setExpenses] = useState<Expense[]>(dummyExpenses);
+  const [expenses, setExpenses] = useState<Expense[]>([]);
+  const [detailSummary, setDetailSummary] = useState<Expense | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
   const [expensesPerPage] = useState(6);
   const [selectedCategory, setSelectedCategory] = useState("all");
@@ -84,6 +56,18 @@ const ExpensesPage = () => {
   const [currentMonthTo, setCurrentMonthTo] = useState(
     addMonths(new Date(), 1)
   );
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await getExpenseDetail();
+      setDetailSummary(data);
+    };
+    fetchData();
+  }, []);
+
+  console.log(detailSummary);
+  console.log(expenses);
+
 
   const handleCategoryClick = (category: string) => {
     setSelectedCategory(category);
