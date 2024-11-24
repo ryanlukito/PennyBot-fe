@@ -9,22 +9,15 @@ import { ChartData, ChartOptions } from "chart.js";
 import { getOverview } from "@/app/connections/connectToDB";
 
 const OverviewPage: React.FC = () => {
-
-  const [overviewData, setOverviewData] = useState(null);
+  const [dataSummary, setDataSummary] = useState(null);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const data = await getOverview();
-        setOverviewData(data);
-
-        console.log(overviewData)
-      } catch (error) {
-        console.error("Error fetching overview:", error);
-      }
-    };
-
-    fetchData();
+    const kontol = async () => {
+    const data = await getOverview();
+      await setDataSummary(data);
+    }
+    kontol();
+    console.log(dataSummary);
   }, []);
 
   const colorBase = "#22B786";
