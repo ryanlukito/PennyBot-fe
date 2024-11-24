@@ -38,7 +38,7 @@ const sources = [
     width: "w-[1.563vw]",
     height: "h-[1.563vw]",
     text: "Settings",
-    linkto: "/Settings",
+    linkto: "/SettingsPage",
   },
 ];
 

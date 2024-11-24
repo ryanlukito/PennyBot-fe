@@ -26,3 +26,16 @@ export type EditExpensesPayload = {
   description: string;
   payment_method: string;
 };
+
+export type UpdateUserPayload = {
+  firstName: string;
+  lastName: string;
+  occupation: string;
+  nationality: string;
+  address: string;
+  country: string;
+};
+
+export type UpdateIncomePayload = {
+  income: number;
+};

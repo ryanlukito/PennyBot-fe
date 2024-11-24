@@ -1,10 +1,11 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import NavBar from "@/app/components/NavBar";
 import "tailwindcss/tailwind.css";
 import { FaCalendarAlt } from "react-icons/fa";
 import { format, addMonths, subMonths, addDays, startOfMonth } from "date-fns";
 import Link from "next/link";
+import { getExpenseDetail } from "@/app/connections/connectToDB";
 // import { getExpenseDetail } from "@/app/connections/connectToDB";
 
 interface Expense {
@@ -38,6 +39,11 @@ const ExpensesPage = () => {
     description: `Description for Dummy ${i + 1}`,
     payment_method: ["Cash", "Credit Card", "Debit Card"][i % 3],
   }));
+
+  useEffect(()=>{
+    const data = getExpenseDetail();
+    console.log(data);
+  }, []);
 
   const [expenses, setExpenses] = useState<Expense[]>(dummyExpenses);
   const [currentPage, setCurrentPage] = useState(1);

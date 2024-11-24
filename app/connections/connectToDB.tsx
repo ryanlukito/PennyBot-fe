@@ -3,6 +3,8 @@ import {
   InputExpensePayload,
   SignUpPayload,
   EditExpensesPayload,
+  UpdateUserPayload,
+  UpdateIncomePayload,
 } from "../typesCollections/types";
 
 export const postExpenses = async (payload: InputExpensePayload) => {
@@ -69,12 +71,54 @@ export const postUser = async (payload: SignUpPayload) => {
   }
 };
 
+export const updateUser = async (payload: UpdateUserPayload) => {
+  try {
+    const response = await axios.patch(
+      `https://api.ambagandalf.site/expense/summary`, // nanti diganti
+      payload
+    );
+    console.log(`response from API: ${response.data}`);
+    return response.data;
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      console.error("Axios error:", error.response?.data || error.message);
+      throw new Error(
+        error.response?.data || "An error occured while sending the request"
+      );
+    } else {
+      console.error("Unexpected error:", error);
+      throw new Error("An unexpected error occured.");
+    }
+  }
+};
+
+export const updateIncome = async (payload: UpdateIncomePayload) => {
+  try {
+    const response = await axios.patch(
+      `https://api.ambagandalf.site/expense/summary`, // nanti diganti
+      payload
+    );
+    console.log(`response from API: ${response.data}`);
+    return response.data;
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      console.error("Axios error:", error.response?.data || error.message);
+      throw new Error(
+        error.response?.data || "An error occured while sending the request"
+      );
+    } else {
+      console.error("Unexpected error:", error);
+      throw new Error("An unexpected error occured.");
+    }
+  }
+};
+
 export const deleteExpense = async () => {};
 
 export const getExpenseDetail = async () => {
   try {
     const response = await axios.get(
-      `https://api.ambagandalf.site/expense` // nanti diganti
+      `https://api.ambagandalf.site/expense/detail` // nanti diganti
     );
     console.log(`response from API: ${response.data}`);
     return response.data;
