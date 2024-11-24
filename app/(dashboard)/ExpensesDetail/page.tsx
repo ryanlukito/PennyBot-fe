@@ -4,7 +4,7 @@ import NavBar from "@/app/components/NavBar";
 import "tailwindcss/tailwind.css";
 import { FaCalendarAlt } from "react-icons/fa";
 import { format, addMonths, subMonths, addDays, startOfMonth } from "date-fns";
-// import Link from "next/link";
+import Link from "next/link";
 import { getExpenseDetail } from "@/app/connections/connectToDB";
 
 interface Expense {
@@ -20,6 +20,30 @@ interface Expense {
 }
 
 const ExpensesPage = () => {
+  // const dummyExpenses: Expense[] = Array.from({ length: 20 }, (_, i) => ({
+  //   _id: `${i + 1}`,
+  //   subject: `Dummy ${i + 1}`,
+  //   merchant: `Merchant ${i + 1}`,
+  //   date: new Date(2024, i % 12, i + 1).toISOString(),
+  //   total: Math.floor(Math.random() * 1000000),
+  //   reimbuse: i % 2 === 0,
+  //   category: [
+  //     "food",
+  //     "groceries",
+  //     "health",
+  //     "electricity",
+  //     "transportation",
+  //     "entertainment",
+  //   ][i % 6],
+  //   description: `Description for Dummy ${i + 1}`,
+  //   payment_method: ["Cash", "Credit Card", "Debit Card"][i % 3],
+  // }));
+
+  // useEffect(() => {
+  //   const data = getExpenseDetail();
+  //   console.log(data);
+  // }, []);
+
   const [expenses, setExpenses] = useState<Expense[]>([]);
   const [detailSummary, setDetailSummary] = useState<Expense | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
@@ -53,15 +77,15 @@ const ExpensesPage = () => {
     setCurrentPage(page);
   };
 
+  // const handleDateChange = (dates: { from?: Date; to?: Date }) => {
+  //   setDate(dates);
+  //   setCurrentPage(1);
+  // };
+
+  // Add a function to delete an expense by ID
   const handleDeleteExpense = (id: string) => {
     const updatedExpenses = expenses.filter((expense) => expense._id !== id);
     setExpenses(updatedExpenses);
-  };
-
-  const handleEditExpense = (id: string) => {
-    // Logic for editing an expense
-    // For example, you can redirect to an edit page or open a modal
-    console.log(`Edit expense with ID: ${id}`);
   };
 
   const filteredExpenses = expenses
@@ -134,6 +158,14 @@ const ExpensesPage = () => {
       setDate({ from: date.from, to: day });
     }
   };
+
+  // try {
+  //   const response = getExpenseDetail();
+  //   console.log(`Response from API: ${response}`);
+  // } catch (error) {
+  //   console.log("gagal karena ga ada user_id");
+  //   console.error("Error logging expense:", error);
+  // }
 
   return (
     <>
@@ -256,89 +288,128 @@ const ExpensesPage = () => {
                       </button>
                       <button
                         className="px-4 py-2 text-black bg-[#22B786] rounded-lg hover:bg-gray-200"
-                        onClick={() => {
-                          setDate({});
-                          togglePopover();
-                        }}
+                        onClick={() =>
+                          setDate({ from: undefined, to: undefined })
+                        }
                       >
-                        Clear
+                        Reset
                       </button>
                     </div>
                   </div>
                 )}
               </div>
-              <div className="flex gap-2">
-                <button
-                  onClick={() => handleCategoryClick("all")}
-                  className="px-4 py-2 bg-blue-200 rounded-full"
-                >
-                  All
-                </button>
-                <button
-                  onClick={() => handleCategoryClick("Food")}
-                  className="px-4 py-2 bg-blue-200 rounded-full"
-                >
-                  Food
-                </button>
-                <button
-                  onClick={() => handleCategoryClick("Transport")}
-                  className="px-4 py-2 bg-blue-200 rounded-full"
-                >
-                  Transport
-                </button>
+            </div>
+
+            {/* Filter by Category */}
+            <div className="flex justify-between mb-4">
+              <div className="flex flex-wrap gap-2">
+                {[
+                  "all",
+                  "food",
+                  "groceries",
+                  "health",
+                  "electricity",
+                  "transportation",
+                  "entertainment",
+                ].map((category) => (
+                  <button
+                    key={category}
+                    className={`px-4 py-2 rounded-lg ${
+                      selectedCategory === category
+                        ? "bg-[#22B786]"
+                        : "bg-gray-300"
+                    } hover:bg-[#22B786] text-black font-bold`}
+                    onClick={() => handleCategoryClick(category)}
+                  >
+                    {category.charAt(0).toUpperCase() + category.slice(1)}
+                  </button>
+                ))}
               </div>
             </div>
 
-            {/* Expense Table */}
-            <table className="min-w-full table-auto">
-              <thead>
-                <tr className="text-left">
-                  <th className="px-4 py-2">Subject</th>
-                  <th className="px-4 py-2">Date</th>
-                  <th className="px-4 py-2">Category</th>
-                  <th className="px-4 py-2">Total</th>
-                  <th className="px-4 py-2">Action</th>
-                </tr>
-              </thead>
-              <tbody>
-                {paginatedExpenses.map((expense) => (
-                  <tr key={expense._id}>
-                    <td className="px-4 py-2">{expense.subject}</td>
-                    <td className="px-4 py-2">{expense.date}</td>
-                    <td className="px-4 py-2">{expense.category}</td>
-                    <td className="px-4 py-2">{expense.total}</td>
-                    <td className="px-4 py-2 flex gap-2">
-                      <button
-                        onClick={() => handleEditExpense(expense._id)}
-                        className="text-blue-500"
-                      >
-                        Edit
-                      </button>
-                      <button
-                        onClick={() => handleDeleteExpense(expense._id)}
-                        className="text-red-500"
-                      >
-                        Delete
-                      </button>
-                    </td>
+            {/* Expenses Table */}
+            <div className="overflow-x-auto bg-white shadow-lg rounded-lg">
+              <table className="min-w-full">
+                <thead className="bg-green-400">
+                  <tr>
+                    <th className="py-3 px-6 text-left">Subject</th>
+                    <th className="py-3 px-2 text-center">Date</th>
+                    <th className="py-3 px-3 text-center">Category</th>
+                    <th className="py-3 px-6 text-center">Total</th>
+                    <th className="py-3 px-2 text-center">Payment Method</th>
+                    <th className="py-3 px-3 text-center">Reimbursable</th>
+                    <th className="py-3 px-6 text-center">Description</th>
+                    <th className="py-3 px-5 text-center">Button</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
+                </thead>
+                <tbody>
+                  {paginatedExpenses.length > 0 ? (
+                    paginatedExpenses.map((expense) => (
+                      <tr key={expense._id} className="border-b">
+                        <td className="py-4 px-6">{expense.subject}</td>
+                        <td className="py-4 px-2 text-center">
+                          {format(new Date(expense.date), "MMM dd, yyyy")}
+                        </td>
+                        <td className="py-4 px-3 text-center">
+                          {expense.category}
+                        </td>
+                        <td className="py-4 px-6 text-center">
+                          Rp{expense.total}
+                        </td>
+                        <td className="py-4 px-2 text-center">
+                          {expense.payment_method}
+                        </td>
+                        <td className="py-4 px-3 text-center">
+                          {expense.reimbuse ? "Yes" : "No"}
+                        </td>
+                        <td className="py-4 px-6 text-center">
+                          {expense.description}
+                        </td>
+                        <td className="flex flex-col justify-between py-[0.4vw] px-[0.4vw] font-bold">
+                          <Link
+                            href="/EditExpenses"
+                            className="mb-[0.2vw] bg-[#22B78680] text-center"
+                          >
+                            Edit
+                          </Link>
+                          <button
+                            className="bg-[#FF8C8C]"
+                            onClick={() => handleDeleteExpense(expense._id)}
+                          >
+                            Delete
+                          </button>
+                        </td>
+                      </tr>
+                    ))
+                  ) : (
+                    <tr>
+                      <td colSpan={7} className="text-center py-4 px-6">
+                        No expenses found
+                      </td>
+                    </tr>
+                  )}
+                </tbody>
+              </table>
+            </div>
 
             {/* Pagination */}
-            <div className="flex justify-center mt-4">
+            <div className="flex justify-end items-center mt-6">
               <button
+                className="px-4 py-2 bg-white text-black rounded-[0.221vw] hover:bg-gray-100 border border-[#22B786]"
                 onClick={() => handlePageChange(currentPage - 1)}
-                className="px-4 py-2 bg-blue-500 text-white rounded-lg"
                 disabled={currentPage === 1}
               >
                 Previous
               </button>
+              <span className="mx-4 text-2xl px-[1.5vw] py-[0.2vw] bg-[#22B786] rounded-[0.221vw] text-white">
+                {currentPage}
+              </span>
               <button
+                className="px-7 py-2 bg-white text-black rounded-[0.221vw] hover:bg-gray-100 border border-[#22B786]"
                 onClick={() => handlePageChange(currentPage + 1)}
-                className="px-4 py-2 bg-blue-500 text-white rounded-lg"
-                disabled={paginatedExpenses.length < expensesPerPage}
+                disabled={
+                  currentPage * expensesPerPage >= filteredExpenses.length
+                }
               >
                 Next
               </button>
