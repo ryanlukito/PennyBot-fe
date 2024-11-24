@@ -4,7 +4,11 @@ import React from "react";
 import NavBar from "@/app/components/NavBar";
 import { FaPlus } from "react-icons/fa";
 import { editExpenses } from "@/app/connections/connectToDB";
-import { EditExpensesPayload, EditExpensesProps } from "@/app/typesCollections/types";
+import { EditExpensesPayload } from "@/app/typesCollections/types";
+
+type EditExpensesProps = {
+  id: string; // Assuming `id` is a required prop
+};
 
 const EditExpenses : React.FC<EditExpensesProps> = ({ id }) => {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
