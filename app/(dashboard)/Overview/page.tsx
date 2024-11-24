@@ -33,13 +33,21 @@ const OverviewPage: React.FC = () => {
   }, []);
   console.log(dataSummary);
 
+  const summary = dataSummary?.summary;
+  const months = summary
+    ? Object.keys(summary).map((key) => key.split("-")[1])
+    : [];
+  const values = summary
+    ? Object.values(summary).map((value) => Number(value))
+    : [];
+
   const colorBase = "#22B786";
   const data: ChartData<"bar"> = {
-    labels: ["January", "February", "March", "April", "May"],
+    labels: months,
     datasets: [
       {
         label: "Sales",
-        data: [12, 19, 3, 5, 2],
+        data: values as (number | [number, number] | null)[],
         backgroundColor: colorBase,
         borderColor: colorBase,
         borderWidth: 1,
@@ -62,30 +70,18 @@ const OverviewPage: React.FC = () => {
   };
 
   const data2: ChartData<"pie"> = {
-    labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange", "Cyan"], // Added Orange and Cyan
+    labels: Object.keys(dataSummary?.budget || {}),
     datasets: [
       {
-        label: "Dataset 1",
-        data: [300, 50, 100, 75, 125, 200, 150], // Added values for the new colors
+        data: Object.values(dataSummary?.budget || {}),
         backgroundColor: [
-          "rgba(255, 99, 132, 0.2)", // Red
-          "rgba(54, 162, 235, 0.2)", // Blue
-          "rgba(255, 206, 86, 0.2)", // Yellow
-          "rgba(75, 192, 192, 0.2)", // Green
-          "rgba(153, 102, 255, 0.2)", // Purple
-          "rgba(255, 159, 64, 0.2)", // Orange
-          "rgba(0, 255, 255, 0.2)", // Cyan
-        ],
-        borderColor: [
-          "rgba(255, 99, 132, 1)", // Red
-          "rgba(54, 162, 235, 1)", // Blue
-          "rgba(255, 206, 86, 1)", // Yellow
-          "rgba(75, 192, 192, 1)", // Green
-          "rgba(153, 102, 255, 1)", // Purple
-          "rgba(255, 159, 64, 1)", // Orange
-          "rgba(0, 255, 255, 1)", // Cyan
-        ],
-        borderWidth: 1,
+          "#FF6384",
+          "#36A2EB",
+          "#FFCE56",
+          "#4BC0C0",
+          "#9966FF",
+        ], // Add more colors as needed
+        hoverOffset: 4,
       },
     ],
   };
