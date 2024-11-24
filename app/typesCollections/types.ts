@@ -45,3 +45,7 @@ export type UpdateIncomePayload = {
 export type id = {
   id: string
 }
+
+export type EditExpensesProps = {
+  id: string; // Assuming `id` is a required prop
+};

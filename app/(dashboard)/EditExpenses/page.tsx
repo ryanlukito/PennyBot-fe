@@ -4,13 +4,9 @@ import React from "react";
 import NavBar from "@/app/components/NavBar";
 import { FaPlus } from "react-icons/fa";
 import { editExpenses } from "@/app/connections/connectToDB";
-import { EditExpensesPayload } from "@/app/typesCollections/types";
+import { EditExpensesPayload, EditExpensesProps } from "@/app/typesCollections/types";
 
-interface EditExpensesProps {
-  id: string;
-}
-
-const EditExpenses = ({id}:EditExpensesProps ) => {
+const EditExpenses : React.FC<EditExpensesProps> = ({ id }) => {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
