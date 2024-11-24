@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import NavBar from "@/app/components/NavBar";
 import Image from "next/image";
 import BarChart from "@/app/components/BarChart";
@@ -9,10 +9,17 @@ import { ChartData, ChartOptions } from "chart.js";
 import { getOverview } from "@/app/connections/connectToDB";
 
 const OverviewPage: React.FC = () => {
+
+  const [overviewData, setOverviewData] = useState(null);
+
   useEffect(() => {
-    const data = getOverview();
-    console.log(data);
-  }, []);
+    const fetchData = async () => {
+        const data = await getOverview();
+        setOverviewData(data);
+    };
+    fetchData();
+    console.log(overviewData);
+  });
 
   const colorBase = "#22B786";
   const data: ChartData<"bar"> = {
