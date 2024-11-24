@@ -5,12 +5,14 @@ import NavBar from "@/app/components/NavBar";
 import { FaPlus } from "react-icons/fa";
 import { editExpenses } from "@/app/connections/connectToDB";
 import { EditExpensesPayload } from "@/app/typesCollections/types";
+import { useRouter } from "next/router";
 
-type EditExpensesProps = {
-  id: string; // Assuming `id` is a required prop
-};
+const EditExpenses = () => {
+  const router = useRouter();
+  const { id } = router.query;
 
-const EditExpenses : React.FC<EditExpensesProps> = ({ id }) => {
+  const expenseId = Array.isArray(id) ? id[0] : id  ?? "";
+
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
@@ -42,7 +44,7 @@ const EditExpenses : React.FC<EditExpensesProps> = ({ id }) => {
 
     // Input expense into database
     try {
-      const response = await editExpenses(payload, id);
+      const response = await editExpenses(payload, expenseId);
       console.log(`Response from API: ${response.data}`);
       alert("Expense Update Successfully!");
     } catch (error) {
