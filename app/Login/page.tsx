@@ -25,7 +25,7 @@ const LoginPage = () => {
 
     try {
       const { data } = await axios.post(
-        "https://api.ambagandalf.site/auth/login",
+        "http://localhost:4000/auth/login",
         payload,
         {
           withCredentials: true,
