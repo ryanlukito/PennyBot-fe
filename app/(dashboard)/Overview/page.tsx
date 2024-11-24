@@ -7,6 +7,7 @@ import BarChart from "@/app/components/BarChart";
 import PieChart from "@/app/components/PieChart";
 import { ChartData, ChartOptions } from "chart.js";
 import { getOverview } from "@/app/connections/connectToDB";
+import PieChartDetails from "@/app/components/PieChartDetails";
 
 interface Money {
   total_balance: number;
@@ -18,6 +19,7 @@ interface DataSummary {
   money: Money;
   budget: Record<string, number>;
   summary: Record<string, unknown>;
+  percentage: { name: string; percentage: number; amount: number }[];
   msg: string;
 }
 
@@ -25,11 +27,11 @@ const OverviewPage: React.FC = () => {
   const [dataSummary, setDataSummary] = useState<DataSummary | null>(null);
 
   useEffect(() => {
-    const kontol = async () => {
+    const fetchData = async () => {
       const data = await getOverview();
       setDataSummary(data);
     };
-    kontol();
+    fetchData();
   }, []);
   console.log(dataSummary);
 
@@ -46,7 +48,7 @@ const OverviewPage: React.FC = () => {
     labels: months,
     datasets: [
       {
-        label: "Sales",
+        label: "Expenses",
         data: values as (number | [number, number] | null)[],
         backgroundColor: colorBase,
         borderColor: colorBase,
@@ -102,13 +104,11 @@ const OverviewPage: React.FC = () => {
     },
   };
 
-  // try {
-  //   const response = getOverview();
-  //   console.log(`Response from API: ${response}`);
-  // } catch (error) {
-  //   console.log("gagal karena ga ada user_id");
-  //   console.error("Error logging expense:", error);
-  // }
+  const percentageData = (dataSummary?.percentage ?? []).map((item) => ({
+    name: item.name === "Food" ? "Foods" : item.name,
+    percentage: item.percentage,
+    amount: item.amount,
+  }));
 
   return (
     <section className="bg-[#E2ECEA] w-screen h-screen relative text-black flex flex-row overflow-hidden">
@@ -185,8 +185,9 @@ const OverviewPage: React.FC = () => {
               <BarChart data={data} options={options}></BarChart>
             </div>
           </div>
-          <div className="w-full h-[15vw] bg-white rounded-[0.521vw] mt-[1vw] px-[1vw] flex">
+          <div className="w-full h-[15vw] bg-white rounded-[0.521vw] mt-[1vw] px-[1vw] flex justify-around pt-[2vw]">
             <PieChart data={data2} options={options2}></PieChart>
+            <PieChartDetails data={percentageData} />
           </div>
         </div>
       </div>
