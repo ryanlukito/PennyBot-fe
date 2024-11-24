@@ -61,6 +61,7 @@ const ExpensesPage = () => {
     const fetchData = async () => {
       const data = await getExpenseDetail();
       setDetailSummary(data);
+      setExpenses(data);
     };
     fetchData();
   }, []);
