@@ -97,7 +97,7 @@ export const updateUser = async (payload: UpdateUserPayload) => {
 
 export const updateIncome = async (payload: UpdateIncomePayload) => {
   try {
-    const response = await axios.patch(
+    const response = await axios.post(
       `https://api.ambagandalf.site/money`, // nanti diganti
       payload,
       { withCredentials: true }
