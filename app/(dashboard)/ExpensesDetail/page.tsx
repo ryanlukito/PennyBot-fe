@@ -3,7 +3,14 @@ import React, { useEffect, useState } from "react";
 import NavBar from "@/app/components/NavBar";
 import "tailwindcss/tailwind.css";
 import { FaCalendarAlt } from "react-icons/fa";
-import { format, addMonths, subMonths, addDays, startOfMonth } from "date-fns";
+import {
+  format,
+  addMonths,
+  subMonths,
+  addDays,
+  startOfMonth,
+  parse,
+} from "date-fns";
 import Link from "next/link";
 import { getExpenseDetail } from "@/app/connections/connectToDB";
 
@@ -20,30 +27,6 @@ interface Expense {
 }
 
 const ExpensesPage = () => {
-  // const dummyExpenses: Expense[] = Array.from({ length: 20 }, (_, i) => ({
-  //   _id: `${i + 1}`,
-  //   subject: `Dummy ${i + 1}`,
-  //   merchant: `Merchant ${i + 1}`,
-  //   date: new Date(2024, i % 12, i + 1).toISOString(),
-  //   total: Math.floor(Math.random() * 1000000),
-  //   reimbuse: i % 2 === 0,
-  //   category: [
-  //     "food",
-  //     "groceries",
-  //     "health",
-  //     "electricity",
-  //     "transportation",
-  //     "entertainment",
-  //   ][i % 6],
-  //   description: `Description for Dummy ${i + 1}`,
-  //   payment_method: ["Cash", "Credit Card", "Debit Card"][i % 3],
-  // }));
-
-  // useEffect(() => {
-  //   const data = getExpenseDetail();
-  //   console.log(data);
-  // }, []);
-
   const [expenses, setExpenses] = useState<Expense[]>([]);
   const [detailSummary, setDetailSummary] = useState<Expense | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
@@ -58,7 +41,7 @@ const ExpensesPage = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const data = await getExpenseDetail();
+      const data = await getExpenseDetail(); // Assuming it fetches the payload
       setDetailSummary(data);
       setExpenses(data);
     };
@@ -66,7 +49,6 @@ const ExpensesPage = () => {
   }, []);
 
   console.log(detailSummary);
-  console.log(expenses);
 
   const handleCategoryClick = (category: string) => {
     setSelectedCategory(category);
@@ -76,11 +58,6 @@ const ExpensesPage = () => {
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
   };
-
-  // const handleDateChange = (dates: { from?: Date; to?: Date }) => {
-  //   setDate(dates);
-  //   setCurrentPage(1);
-  // };
 
   // Add a function to delete an expense by ID
   const handleDeleteExpense = (id: string) => {
@@ -97,9 +74,13 @@ const ExpensesPage = () => {
     })
     .filter((expense) => {
       if (date.from && date.to) {
-        const expenseDate = new Date(expense.date).setHours(0, 0, 0, 0);
-        const startDate = new Date(date.from).setHours(0, 0, 0, 0);
-        const endDate = new Date(date.to).setHours(23, 59, 59, 999);
+        // Parse the date from the expense data
+        const expenseDate = parse(expense.date, "dd MMMM yyyy", new Date());
+
+        // Use the setDate() method to get the correct date without the time part
+        const startDate = new Date(date.from);
+        const endDate = new Date(date.to);
+
         return expenseDate >= startDate && expenseDate <= endDate;
       }
       return true;
