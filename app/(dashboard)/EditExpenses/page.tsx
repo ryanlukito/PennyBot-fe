@@ -1,19 +1,14 @@
 "use client";
 
 import React from "react";
+import { useParams } from "next/navigation";
 import NavBar from "@/app/components/NavBar";
 import { FaPlus } from "react-icons/fa";
 import { editExpenses } from "@/app/connections/connectToDB";
 import { EditExpensesPayload } from "@/app/typesCollections/types";
-import { useRouter } from "next/router";
-
-// interface EditExpensesProps {
-//   id: string; // Assuming `id` is a required prop
-// }
 
 const EditExpenses: React.FC = () => {
-  const router = useRouter();
-  const { id } = router.query; // Extract `id` from the URL
+  const { id } = useParams(); // Extract `id` from URL params
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
