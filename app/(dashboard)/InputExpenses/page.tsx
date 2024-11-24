@@ -27,7 +27,7 @@ const InputExpensesPage = () => {
       merchant: formElements.merchant.value,
       date: formElements.date.value,
       total: parseInt(formElements.total.value),
-      reimbuse: true,
+      reimbuse: formElements.reimburse.checked,
       category: formElements.category.value,
       description: formElements.description.value,
       payment_method: formElements.paymentMethod.value,

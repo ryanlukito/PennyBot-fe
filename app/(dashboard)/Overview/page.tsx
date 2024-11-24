@@ -144,9 +144,9 @@ const OverviewPage: React.FC = () => {
                 />
                 <h1 className="text-[0.938vw] text-[#484545]">Total Balance</h1>
                 {dataSummary ? (
-                  <p>{dataSummary.money.total_balance}</p>
+                  <p>Rp {dataSummary.money.total_balance}</p>
                 ) : (
-                  <p>0</p>
+                  <p>Rp 0</p>
                 )}
               </div>
               <div className="w-full h-[7vw] bg-[#C8CEF7] rounded-[0.521vw] p-[0.4vw]">
@@ -159,7 +159,7 @@ const OverviewPage: React.FC = () => {
                 />
                 <h1 className="text-[0.938vw] text-[#484545]">Total Income</h1>
                 {dataSummary ? (
-                  <p>{dataSummary.money.total_income}</p>
+                  <p>Rp {dataSummary.money.total_income}</p>
                 ) : (
                   <p>0</p>
                 )}
@@ -176,7 +176,7 @@ const OverviewPage: React.FC = () => {
                   Total Expenses
                 </h1>
                 {dataSummary ? (
-                  <p>{dataSummary.money.total_expanse}</p>
+                  <p>Rp {dataSummary.money.total_expanse}</p>
                 ) : (
                   <p>0</p>
                 )}
