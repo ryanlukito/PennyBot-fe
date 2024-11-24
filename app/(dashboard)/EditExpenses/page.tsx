@@ -20,6 +20,7 @@ const EditExpenses = () => {
       category: HTMLInputElement;
       description: HTMLInputElement;
       paymentMethod: HTMLInputElement;
+      invoice: HTMLInputElement;
     };
 
     const payload: EditExpensesPayload = {
@@ -31,6 +32,7 @@ const EditExpenses = () => {
       category: formElements.category.value,
       description: formElements.description.value,
       payment_method: formElements.paymentMethod.value,
+      invoice: "dummy",
     };
     console.log(payload);
 

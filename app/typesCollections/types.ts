@@ -26,6 +26,7 @@ export type EditExpensesPayload = {
   category: string;
   description: string;
   payment_method: string;
+  invoice: string;
 };
 
 export type UpdateUserPayload = {
