@@ -12,11 +12,11 @@ interface PieChartDetailsProps {
 
 const PieChartDetails: React.FC<PieChartDetailsProps> = ({ data }) => {
   return (
-    <div className="space-y-4">
+    <div className="space-y-[0.5vw]">
       {data.map((item, index) => (
         <div
           key={index}
-          className="flex items-center justify-between border-b border-gray-200 pb-2 space-x-[2vw]"
+          className="flex items-center justify-between border-b border-gray-200 pb-[0.1vw] space-x-[2vw]"
         >
           {/* Icon and Name */}
           <div className="flex items-center space-x-[1vw]">
