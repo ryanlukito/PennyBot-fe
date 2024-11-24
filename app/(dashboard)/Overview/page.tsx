@@ -185,11 +185,9 @@ const OverviewPage: React.FC = () => {
               <BarChart data={data} options={options}></BarChart>
             </div>
           </div>
-          <div className="w-full h-[15vw] bg-white rounded-[0.521vw] mt-[1vw] px-[1vw] flex justify-around items-center pt-[2vw]">
-            <div className="flex-1 max-w-[45%]">
-              <PieChart data={data2} options={options2} />
-            </div>
-            <div className="flex-1 max-w-[45%]">
+          <div className="w-full h-[15vw] bg-white rounded-[0.521vw] mt-[1vw] px-[1vw] flex justify-around pt-[2vw]">
+            <PieChart data={data2} options={options2}></PieChart>
+            <div className="max-w-[45%] h-full">
               <PieChartDetails data={percentageData} />
             </div>
           </div>
