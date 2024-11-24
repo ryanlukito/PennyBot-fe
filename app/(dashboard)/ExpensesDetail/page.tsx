@@ -55,7 +55,7 @@ const ExpensesPage = () => {
   const handleDeleteExpense = (id: string) => {
     const updatedExpenses = expenses.filter((expense) => expense._id !== id);
     setExpenses(updatedExpenses);
-    deleteExpense(id);
+    deleteExpense(expenses[0]._id);
   };
 
   const filteredExpenses = expenses
