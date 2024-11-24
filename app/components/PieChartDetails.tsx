@@ -12,7 +12,7 @@ interface PieChartDetailsProps {
 
 const PieChartDetails: React.FC<PieChartDetailsProps> = ({ data }) => {
   return (
-    <div className="w-[10vw] h-full space-y-[0.5vw]">
+    <div className="w-[25vw] h-full space-y-[0.5vw]">
       {data.map((item, index) => (
         <div
           key={index}
@@ -24,7 +24,7 @@ const PieChartDetails: React.FC<PieChartDetailsProps> = ({ data }) => {
           </div>
 
           {/* Percentage */}
-          <p className="text-gray-500">{item.percentage} %</p>
+          <p className="text-gray-500 font-[0.5vw]">{item.percentage} %</p>
           {/* Amount */}
           <p className="font-[0.5vw] text-gray-700">Rp {item.amount}</p>
         </div>
