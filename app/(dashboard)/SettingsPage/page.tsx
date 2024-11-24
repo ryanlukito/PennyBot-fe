@@ -28,8 +28,8 @@ const SettingsPage = () => {
       country: HTMLInputElement;
     };
     const payload: UpdateUserPayload = {
-      firstName: formElements.firstName.value,
-      lastName: formElements.lastName.value,
+      firstname: formElements.firstName.value,
+      lastname: formElements.lastName.value,
       occupation: formElements.occupation.value,
       nationality: formElements.nationality.value,
       address: formElements.address.value,

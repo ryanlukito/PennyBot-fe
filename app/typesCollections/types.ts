@@ -28,8 +28,8 @@ export type EditExpensesPayload = {
 };
 
 export type UpdateUserPayload = {
-  firstName: string;
-  lastName: string;
+  firstname: string;
+  lastname: string;
   occupation: string;
   nationality: string;
   address: string;
