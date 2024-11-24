@@ -26,9 +26,9 @@ const OverviewPage: React.FC = () => {
 
   useEffect(() => {
     const kontol = async () => {
-    const data = await getOverview();
+      const data = await getOverview();
       setDataSummary(data);
-    }
+    };
     kontol();
   }, []);
   console.log(dataSummary);
@@ -143,7 +143,11 @@ const OverviewPage: React.FC = () => {
                   className="w-[2.135vw] h-[1.979vw]"
                 />
                 <h1 className="text-[0.938vw] text-[#484545]">Total Balance</h1>
-                {dataSummary ? <p>{dataSummary.money.total_balance}</p> : <p>0</p>}
+                {dataSummary ? (
+                  <p>{dataSummary.money.total_balance}</p>
+                ) : (
+                  <p>0</p>
+                )}
               </div>
               <div className="w-full h-[7vw] bg-[#C8CEF7] rounded-[0.521vw] p-[0.4vw]">
                 <Image
@@ -154,7 +158,11 @@ const OverviewPage: React.FC = () => {
                   className="w-[1.927vw] h-[1.979vw]"
                 />
                 <h1 className="text-[0.938vw] text-[#484545]">Total Income</h1>
-                {dataSummary ? <p>{dataSummary.money.total_income}</p> : <p>0</p>}
+                {dataSummary ? (
+                  <p>{dataSummary.money.total_income}</p>
+                ) : (
+                  <p>0</p>
+                )}
               </div>
               <div className="w-full h-[7vw] bg-[#F3BBBC] rounded-[0.521vw] p-[0.4vw]">
                 <Image
@@ -167,11 +175,17 @@ const OverviewPage: React.FC = () => {
                 <h1 className="text-[0.938vw] text-[#484545]">
                   Total Expenses
                 </h1>
-                {dataSummary ? <p>{dataSummary.money.total_expanse}</p> : <p>0</p>}
+                {dataSummary ? (
+                  <p>{dataSummary.money.total_expanse}</p>
+                ) : (
+                  <p>0</p>
+                )}
               </div>
             </div>
             <div className="w-[54.344vw] h-full bg-white rounded-[0.521vw] p-[3vw] flex items-end relative">
-              <h1 className="top-0 left-0 text-[2.5vw] font-bold">Summary</h1>
+              <h1 className="top-0 left-0 text-[2.5vw] font-bold absolute">
+                Summary
+              </h1>
               <BarChart data={data} options={options}></BarChart>
             </div>
           </div>
