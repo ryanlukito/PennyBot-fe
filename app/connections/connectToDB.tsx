@@ -29,10 +29,13 @@ export const postExpenses = async (payload: InputExpensePayload) => {
   }
 };
 
-export const editExpenses = async (payload: EditExpensesPayload) => {
+export const editExpenses = async (
+  payload: EditExpensesPayload,
+  id: string
+) => {
   try {
     const response = await axios.patch(
-      `https://api.ambagandalf.site/expense`,
+      `https://api.ambagandalf.site/expense/${id}`,
       payload,
       { withCredentials: true }
     );
