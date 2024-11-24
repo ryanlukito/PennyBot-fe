@@ -76,7 +76,7 @@ export const postUser = async (payload: SignUpPayload) => {
 export const updateUser = async (payload: UpdateUserPayload) => {
   try {
     const response = await axios.patch(
-      `https://api.ambagandalf.site/expense/summary`, // nanti diganti
+      `https://api.ambagandalf.site/user`,
       payload,
       {withCredentials: true}
     );

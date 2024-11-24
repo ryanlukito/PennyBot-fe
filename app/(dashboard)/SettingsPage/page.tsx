@@ -38,7 +38,6 @@ const SettingsPage = () => {
 
     console.log(payload);
 
-    // Input expense into database
     try {
       const response = await updateUser(payload);
       console.log(`Response from API: ${response.data}`);
