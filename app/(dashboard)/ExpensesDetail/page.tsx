@@ -41,7 +41,7 @@ const ExpensesPage = () => {
     fetchData();
   }, []);
 
-  console.log(detailSummary);
+  console.log(`${detailSummary}`);
 
   const handleCategoryClick = (category: string) => {
     setSelectedCategory(category);
@@ -56,7 +56,6 @@ const ExpensesPage = () => {
     const updatedExpenses = expenses.filter((expense) => expense._id !== id);
     setExpenses(updatedExpenses);
     deleteExpense(id);
-
   };
 
   const filteredExpenses = expenses
@@ -313,7 +312,7 @@ const ExpensesPage = () => {
                     <td className="px-4 py-2">
                       {(currentPage - 1) * expensesPerPage + index + 1}
                     </td>
-                    <td className="px-4 py-2">{expense.subject}</td>
+                    <td className="px-4 py-2">{expense.subject} </td>
                     <td className="px-4 py-2">{expense.merchant}</td>
                     <td className="px-4 py-2">{expense.date}</td>
                     <td className="px-4 py-2">{expense.category}</td>
