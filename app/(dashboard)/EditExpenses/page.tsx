@@ -9,7 +9,7 @@ import { EditExpensesPayload } from "@/app/typesCollections/types";
 
 const EditExpenses: React.FC = () => {
   const { id } = useParams(); // Extract `id` from URL params
-  console.log(`check id: ${id}`);
+  // console.log(`check id: ${id}`);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
