@@ -16,13 +16,10 @@ const PieChartDetails: React.FC<PieChartDetailsProps> = ({ data }) => {
       {data.map((item, index) => (
         <div
           key={index}
-          className="flex items-center justify-between border-b border-gray-200 pb-[0.1vw] space-x-[2vw]"
+          className="flex flex-col items-center justify-between border-b border-gray-200 pb-[0.1vw]"
         >
           {/* Icon and Name */}
-          <div className="flex items-center space-x-[1vw]">
-            <p className="font-[0.5vw] text-gray-700">{item.name}</p>
-          </div>
-
+          <p className="font-[0.5vw] text-gray-700">{item.name}</p>
           {/* Percentage */}
           <p className="text-gray-500 font-[0.5vw]">{item.percentage} %</p>
           {/* Amount */}
