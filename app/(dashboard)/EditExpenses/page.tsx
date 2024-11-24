@@ -62,7 +62,6 @@ const EditExpenses = () => {
                 className="bg-[#E2ECEA] w-[31.771vw] h-[2.396vw] rounded-[0.521vw] px-[1vw]"
                 id="subject"
                 name="subject"
-                required
               />
             </div>
             <div className="flex justify-between items-center">
@@ -72,7 +71,6 @@ const EditExpenses = () => {
                 className="bg-[#E2ECEA] w-[31.771vw] h-[2.396vw] rounded-[0.521vw] px-[1vw]"
                 id="merchant"
                 name="merchant"
-                required
               />
             </div>
             <div className="flex justify-between items-center">
@@ -82,7 +80,6 @@ const EditExpenses = () => {
                 className="bg-[#E2ECEA] w-[31.771vw] h-[2.396vw] rounded-[0.521vw] px-[1vw]"
                 id="date"
                 name="date"
-                required
               />
             </div>
             <div className="flex justify-between items-center">
@@ -92,7 +89,6 @@ const EditExpenses = () => {
                 className="bg-[#E2ECEA] w-[31.771vw] h-[2.396vw] rounded-[0.521vw] px-[1vw]"
                 id="total"
                 name="total"
-                required
               />
             </div>
             <div className="px-[7.5vw]">
@@ -108,7 +104,6 @@ const EditExpenses = () => {
                 className="bg-[#E2ECEA] w-[31.771vw] h-[2.396vw] rounded-[0.521vw] px-[1vw]"
                 id="category"
                 name="category"
-                required
               />
             </div>
             <div className="flex justify-between items-center">
@@ -117,7 +112,6 @@ const EditExpenses = () => {
                 className="bg-[#E2ECEA] w-[31.771vw] h-[5.938vw] rounded-[0.521vw] px-[1vw] resize-none"
                 id="description"
                 name="description"
-                required
               />
             </div>
             <div className="flex justify-between items-center">
@@ -130,7 +124,6 @@ const EditExpenses = () => {
                 className="bg-[#E2ECEA] w-[31.771vw] h-[2.396vw] rounded-[0.521vw] px-[1vw]"
                 id="paymentMethod"
                 name="paymentMethod"
-                required
               />
             </div>
             <button className="w-[8.177vw] h-[2.865vw] font-bold text-[1.042vw] rounded-[0.521vw] bg-[#22B786] text-white hover:scale-[102%] ease-in-out duration-300 ml-[7.7vw]">
