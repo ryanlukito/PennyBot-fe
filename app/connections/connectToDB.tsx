@@ -5,7 +5,7 @@ import {
   EditExpensesPayload,
   UpdateUserPayload,
   UpdateIncomePayload,
-} from "../typesCollections/types";
+} from "@/app/typesCollections/types";
 
 export const postExpenses = async (payload: InputExpensePayload) => {
   try {
@@ -34,7 +34,7 @@ export const editExpenses = async (payload: EditExpensesPayload) => {
     const response = await axios.patch(
       `https://api.ambagandalf.site/expense`, // nanti diganti
       payload,
-      {withCredentials: true}
+      { withCredentials: true }
     );
     console.log(`response from API: ${response}`);
     return response.data;
@@ -56,7 +56,7 @@ export const postUser = async (payload: SignUpPayload) => {
     const response = await axios.post(
       `https://api.ambagandalf.site/register`, // nanti diganti
       payload,
-      {withCredentials: true}
+      { withCredentials: true }
     );
     console.log(`response from API: ${response}`);
     return response.data;
@@ -78,7 +78,7 @@ export const updateUser = async (payload: UpdateUserPayload) => {
     const response = await axios.patch(
       `https://api.ambagandalf.site/user`,
       payload,
-      {withCredentials: true}
+      { withCredentials: true }
     );
     console.log(`response from API: ${response.data}`);
     return response.data;
@@ -98,9 +98,9 @@ export const updateUser = async (payload: UpdateUserPayload) => {
 export const updateIncome = async (payload: UpdateIncomePayload) => {
   try {
     const response = await axios.patch(
-      `https://api.ambagandalf.site/expense/summary`, // nanti diganti
+      `https://api.ambagandalf.site/money`, // nanti diganti
       payload,
-      {withCredentials: true}
+      { withCredentials: true }
     );
     console.log(`response from API: ${response.data}`);
     return response.data;
@@ -123,7 +123,7 @@ export const getExpenseDetail = async () => {
   try {
     const response = await axios.get(
       `https://api.ambagandalf.site/expense/detail`,
-      {withCredentials: true}
+      { withCredentials: true }
     );
     console.log(`response from API: ${response.data}`);
     return response.data;
@@ -143,8 +143,8 @@ export const getExpenseDetail = async () => {
 export const getOverview = async () => {
   try {
     const response = await axios.get(
-      `https://api.ambagandalf.site/expense/summary`,  // nanti diganti
-      {withCredentials: true}
+      `https://api.ambagandalf.site/expense/summary`, // nanti diganti
+      { withCredentials: true }
     );
     console.log(`response from API: ${response.data}`);
     return response.data;

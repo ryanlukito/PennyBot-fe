@@ -128,7 +128,7 @@ const Page = () => {
               <div
                 className={`rounded-lg px-4 py-2 max-w-xl ${
                   msg.sender === "user"
-                    ? "bg-blue-500 text-white"
+                    ? "bg-green-600 text-white"
                     : "bg-gray-200 text-gray-800"
                 }`}
                 dangerouslySetInnerHTML={{ __html: formatText(msg.text) }}
@@ -160,7 +160,7 @@ const Page = () => {
           />
           <button
             type="submit"
-            className="ml-4 bg-blue-500 text-white p-2 rounded-xl hover:bg-blue-600 focus:outline-none disabled:bg-blue-300"
+            className="ml-4 bg-blue-500 text-white p-2 rounded-xl hover:bg-green-600 focus:outline-none disabled:bg-blue-300"
             disabled={loading}
           >
             Submit
