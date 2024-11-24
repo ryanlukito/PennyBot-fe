@@ -20,6 +20,36 @@ interface Expense {
 }
 
 const ExpensesPage = () => {
+  const [detailSummary, setDetailSummary] = useState<Expense | null>(null);
+  // const dummyExpenses: Expense[] = Array.from({ length: 20 }, (_, i) => ({
+  //   _id: `${i + 1}`,
+  //   subject: `Dummy ${i + 1}`,
+  //   merchant: `Merchant ${i + 1}`,
+  //   date: new Date(2024, i % 12, i + 1).toISOString(),
+  //   total: Math.floor(Math.random() * 1000000),
+  //   reimbuse: i % 2 === 0,
+  //   category: [
+  //     "food",
+  //     "groceries",
+  //     "health",
+  //     "electricity",
+  //     "transportation",
+  //     "entertainment",
+  //   ][i % 6],
+  //   description: `Description for Dummy ${i + 1}`,
+  //   payment_method: ["Cash", "Credit Card", "Debit Card"][i % 3],
+  // }));
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await getExpenseDetail();
+      setDetailSummary(data);
+    };
+    fetchData();
+  }, []);
+
+  console.log(detailSummary);
+
   const dummyExpenses: Expense[] = Array.from({ length: 20 }, (_, i) => ({
     _id: `${i + 1}`,
     subject: `Dummy ${i + 1}`,
