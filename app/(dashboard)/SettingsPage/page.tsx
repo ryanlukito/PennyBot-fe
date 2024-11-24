@@ -171,7 +171,7 @@ const SettingsPage = () => {
                   </div>
                 </div>
               </div>
-              <button className="bg-[#22B786] px-[1vw] py-[0.5vw] rounded-[0.52vw] font-bold text-white absolute left-0 bottom-0">
+              <button className="bg-[#22B786] px-[1vw] py-[0.5vw] rounded-[0.52vw] font-bold text-white absolute left-0 bottom-0 hover:scale-[102%] ease-in-out duration-300">
                 Update Profile
               </button>
             </form>
@@ -195,7 +195,7 @@ const SettingsPage = () => {
                   required
                 />
               </div>
-              <button className=" bg-[#22B786] font-bold text-white px-[1vw] py-[0.5vw] rounded-[0.52vw] absolute right-0 bottom-[2vw]">
+              <button className=" bg-[#22B786] font-bold text-white px-[1vw] py-[0.5vw] rounded-[0.52vw] absolute right-0 bottom-[2vw] hover:scale-[102%] ease-in-out duration-300">
                 Update Balance
               </button>
             </form>

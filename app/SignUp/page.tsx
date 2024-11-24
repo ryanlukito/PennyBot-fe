@@ -4,12 +4,12 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 // import axios, { AxiosError } from "axios";
-// import { useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { postUser } from "@/app/connections/connectToDB";
 import { SignUpPayload } from "@/app/typesCollections/types";
 
 const SignUpPage = () => {
-  // const { push } = useRouter();
+  const { push } = useRouter();
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -42,8 +42,11 @@ const SignUpPage = () => {
     try {
       const response = await postUser(payload);
       console.log(`Response from API: ${response}`);
+      alert("Sign Up Success!");
+      push("/Login");
     } catch (error) {
       console.error("Error logging expense:", error);
+      alert("Sign Up Fail!");
     }
   };
 
