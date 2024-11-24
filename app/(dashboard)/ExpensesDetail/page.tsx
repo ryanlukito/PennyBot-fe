@@ -264,28 +264,35 @@ const ExpensesPage = () => {
             {/* Filter by Category */}
             <div className="flex justify-between mb-4">
               <div className="flex flex-wrap gap-2">
-                {["all", "food", "transportation", "shopping", "others"].map(
-                  (category) => (
-                    <button
-                      key={category}
-                      className={`px-4 py-2 rounded-lg ${
-                        selectedCategory === category
-                          ? "bg-[#22B786] text-white"
-                          : "bg-[#E8F8F3] text-[#22B786]"
-                      }`}
-                      onClick={() => handleCategoryClick(category)}
-                    >
-                      {category}
-                    </button>
-                  )
-                )}
+                {[
+                  "all",
+                  "food",
+                  "entertainment",
+                  "health",
+                  "groceries",
+                  "transportation",
+                  "electricity",
+                  "lain-lain",
+                ].map((category) => (
+                  <button
+                    key={category}
+                    className={`px-4 py-2 rounded-lg ${
+                      selectedCategory === category
+                        ? "bg-[#22B786] text-white"
+                        : "bg-[#E8F8F3] text-[#22B786]"
+                    }`}
+                    onClick={() => handleCategoryClick(category)}
+                  >
+                    {category}
+                  </button>
+                ))}
               </div>
             </div>
 
             {/* Expense Table */}
             <table className="w-full table-auto text-left text-sm bg-white border border-gray-200 rounded-lg">
               <thead>
-                <tr className="bg-[#F4F8F8]">
+                <tr className="bg-[#22B786]">
                   <th className="px-4 py-2 text-[#575252]">#</th>
                   <th className="px-4 py-2 text-[#575252]">Subject</th>
                   <th className="px-4 py-2 text-[#575252]">Merchant</th>
