@@ -21,7 +21,7 @@ const EditExpenses = (id: id) => {
       category: HTMLInputElement;
       description: HTMLInputElement;
       paymentMethod: HTMLInputElement;
-      invoice: HTMLInputElement;
+      invoice: HTMLInputElement; 
     };
 
     const payload: EditExpensesPayload = {
