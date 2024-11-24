@@ -79,25 +79,27 @@ const ExpensesPage = () => {
         const expenseDate = parse(expense.date, "dd MMMM yyyy", new Date(), {
           locale: id,
         });
-
-        // Log parsed expense date to debug
         console.log("Parsed expense date:", expenseDate);
 
-        // Check if the parsed date is valid
+        // Check if the parsed expenseDate is valid
         if (isNaN(expenseDate.getTime())) {
           console.error("Invalid expense date:", expense.date);
           return false;
         }
 
+        // Parse start and end dates
         const startDate = new Date(date.from);
         const endDate = new Date(date.to);
+        console.log("Parsed start date:", startDate);
+        console.log("Parsed end date:", endDate);
 
-        // Check if the parsed startDate and endDate are valid
+        // Check if the start and end dates are valid
         if (isNaN(startDate.getTime()) || isNaN(endDate.getTime())) {
           console.error("Invalid date range:", startDate, endDate);
           return false;
         }
 
+        // Check if expenseDate is within the range
         return expenseDate >= startDate && expenseDate <= endDate;
       }
       return true;
