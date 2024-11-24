@@ -58,6 +58,12 @@ const ExpensesPage = () => {
     setExpenses(updatedExpenses);
   };
 
+  const handleEditExpense = (id: string) => {
+    // Logic for editing an expense
+    // For example, you can redirect to an edit page or open a modal
+    console.log(`Edit expense with ID: ${id}`);
+  };
+
   const filteredExpenses = expenses
     .filter((expense) => {
       if (selectedCategory !== "all") {
@@ -250,21 +256,18 @@ const ExpensesPage = () => {
                       </button>
                       <button
                         className="px-4 py-2 text-black bg-[#22B786] rounded-lg hover:bg-gray-200"
-                        onClick={() =>
-                          setDate({ from: undefined, to: undefined })
-                        }
+                        onClick={() => {
+                          setDate({});
+                          togglePopover();
+                        }}
                       >
-                        Reset
+                        Clear
                       </button>
                     </div>
                   </div>
                 )}
               </div>
-            </div>
-
-            {/* Filter by Category */}
-            <div className="flex justify-between mb-4">
-              <div className="flex flex-wrap gap-2">
+              <div className="flex gap-2">
                 <button
                   onClick={() => handleCategoryClick("all")}
                   className="px-4 py-2 bg-blue-200 rounded-full"
@@ -304,7 +307,13 @@ const ExpensesPage = () => {
                     <td className="px-4 py-2">{expense.date}</td>
                     <td className="px-4 py-2">{expense.category}</td>
                     <td className="px-4 py-2">{expense.total}</td>
-                    <td className="px-4 py-2">
+                    <td className="px-4 py-2 flex gap-2">
+                      <button
+                        onClick={() => handleEditExpense(expense._id)}
+                        className="text-blue-500"
+                      >
+                        Edit
+                      </button>
                       <button
                         onClick={() => handleDeleteExpense(expense._id)}
                         className="text-red-500"
