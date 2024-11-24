@@ -10,7 +10,7 @@ import {
 export const postExpenses = async (payload: InputExpensePayload) => {
   try {
     const response = await axios.post(
-      `http://localhost:4000/expense`, // nanti diganti
+      `https://api.ambagandalf.site/expense`, // nanti diganti
       payload,
       { withCredentials: true }
     );
@@ -32,7 +32,7 @@ export const postExpenses = async (payload: InputExpensePayload) => {
 export const editExpenses = async (payload: EditExpensesPayload) => {
   try {
     const response = await axios.patch(
-      `http://localhost:4000/expense`, // nanti diganti
+      `https://api.ambagandalf.site/expense`, // nanti diganti
       payload
     );
     console.log(`response from API: ${response}`);
@@ -53,7 +53,7 @@ export const editExpenses = async (payload: EditExpensesPayload) => {
 export const postUser = async (payload: SignUpPayload) => {
   try {
     const response = await axios.post(
-      `http://localhost:4000/register`, // nanti diganti
+      `https://api.ambagandalf.site/register`, // nanti diganti
       payload
     );
     console.log(`response from API: ${response}`);
@@ -74,7 +74,7 @@ export const postUser = async (payload: SignUpPayload) => {
 export const updateUser = async (payload: UpdateUserPayload) => {
   try {
     const response = await axios.patch(
-      `http://localhost:4000/expense/summary`, // nanti diganti
+      `https://api.ambagandalf.site/expense/summary`, // nanti diganti
       payload
     );
     console.log(`response from API: ${response.data}`);
@@ -95,7 +95,7 @@ export const updateUser = async (payload: UpdateUserPayload) => {
 export const updateIncome = async (payload: UpdateIncomePayload) => {
   try {
     const response = await axios.patch(
-      `http://localhost:4000/expense/summary`, // nanti diganti
+      `https://api.ambagandalf.site/expense/summary`, // nanti diganti
       payload
     );
     console.log(`response from API: ${response.data}`);
@@ -118,7 +118,7 @@ export const deleteExpense = async () => {};
 export const getExpenseDetail = async () => {
   try {
     const response = await axios.get(
-      `http://localhost:4000/expense` // nanti diganti
+      `https://api.ambagandalf.site/expense/detail` // nanti diganti
     );
     console.log(`response from API: ${response.data}`);
     return response.data;
@@ -138,7 +138,7 @@ export const getExpenseDetail = async () => {
 export const getOverview = async () => {
   try {
     const response = await axios.get(
-      `http://localhost:4000/expense/summary` // nanti diganti
+      `https://api.ambagandalf.site/expense/summary` // nanti diganti
     );
     console.log(`response from API: ${response.data}`);
     return response.data;
