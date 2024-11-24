@@ -12,7 +12,7 @@ interface PieChartDetailsProps {
 
 const PieChartDetails: React.FC<PieChartDetailsProps> = ({ data }) => {
   return (
-    <div className="w-[25vw] h-full flex flex-col justify-around items-center">
+    <div className="w-[25vw] h-full flex flex-col justify-around items-start">
       {data.map((item, index) => (
         <div
           key={index}
