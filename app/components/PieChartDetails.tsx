@@ -16,7 +16,7 @@ const PieChartDetails: React.FC<PieChartDetailsProps> = ({ data }) => {
       {data.map((item, index) => (
         <div
           key={index}
-          className="flex items-center justify-between border-b border-gray-200"
+          className="flex items-center justify-between border-b border-gray-200 space-x-[1vw]"
         >
           {/* Icon and Name */}
           <p className="font-[0.5vw] text-gray-700">{item.name}</p>
