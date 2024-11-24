@@ -19,7 +19,7 @@ const OverviewPage: React.FC = () => {
     };
     fetchData();
     console.log(overviewData);
-  });
+  }, []);
 
   const colorBase = "#22B786";
   const data: ChartData<"bar"> = {
