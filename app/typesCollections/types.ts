@@ -41,3 +41,7 @@ export type UpdateUserPayload = {
 export type UpdateIncomePayload = {
   income: number;
 };
+
+export type id = {
+  id: string
+}

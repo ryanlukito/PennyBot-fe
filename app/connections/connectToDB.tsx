@@ -5,6 +5,7 @@ import {
   EditExpensesPayload,
   UpdateUserPayload,
   UpdateIncomePayload,
+  id,
 } from "@/app/typesCollections/types";
 
 export const postExpenses = async (payload: InputExpensePayload) => {
@@ -29,10 +30,10 @@ export const postExpenses = async (payload: InputExpensePayload) => {
   }
 };
 
-export const editExpenses = async (payload: EditExpensesPayload) => {
+export const editExpenses = async (payload: EditExpensesPayload, id: id) => {
   try {
     const response = await axios.patch(
-      `https://api.ambagandalf.site/expense/6742e056b01ea27900d11c28`, // nanti diganti
+      `https://api.ambagandalf.site/expense/${id}`,
       payload,
       { withCredentials: true }
     );
@@ -54,7 +55,7 @@ export const editExpenses = async (payload: EditExpensesPayload) => {
 export const postUser = async (payload: SignUpPayload) => {
   try {
     const response = await axios.post(
-      `https://api.ambagandalf.site/register`, // nanti diganti
+      `https://api.ambagandalf.site/register`,
       payload,
       { withCredentials: true }
     );
@@ -117,7 +118,26 @@ export const updateIncome = async (payload: UpdateIncomePayload) => {
   }
 };
 
-export const deleteExpense = async () => {};
+export const deleteExpense = async (id: string) => {
+  try {
+    const response = await axios.delete(
+      `https://api.ambagandalf.site/expense/${id}`, // nanti ganti tambahin id-nya
+      { withCredentials: true }
+    );
+    console.log(`response from API: ${response.data}`);
+    return response.data;
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      console.error("Axios error:", error.response?.data || error.message);
+      throw new Error(
+        error.response?.data || "An error occured while sending the request"
+      );
+    } else {
+      console.error("Unexpected error:", error);
+      throw new Error("An unexpected error occured.");
+    }
+  }
+};
 
 export const getExpenseDetail = async () => {
   try {

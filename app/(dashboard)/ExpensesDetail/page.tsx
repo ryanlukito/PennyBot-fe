@@ -5,7 +5,7 @@ import "tailwindcss/tailwind.css";
 import { FaCalendarAlt } from "react-icons/fa";
 import { format, addMonths, subMonths, addDays, startOfMonth } from "date-fns";
 import Link from "next/link";
-import { getExpenseDetail } from "@/app/connections/connectToDB";
+import { deleteExpense, getExpenseDetail } from "@/app/connections/connectToDB";
 
 interface Expense {
   _id: string;
@@ -55,6 +55,8 @@ const ExpensesPage = () => {
   const handleDeleteExpense = (id: string) => {
     const updatedExpenses = expenses.filter((expense) => expense._id !== id);
     setExpenses(updatedExpenses);
+    deleteExpense(id);
+
   };
 
   const filteredExpenses = expenses
@@ -323,14 +325,16 @@ const ExpensesPage = () => {
                     <td className="px-4 py-2">{expense.total}</td>
                     <td className="px-4 py-2">
                       <Link
-                        href={`/edit-expense/${expense._id}`} // Edit Expense Page (to be created)
+                        href={`/EditExpenses`}
                         className="px-4 py-2 bg-yellow-500 text-white rounded-lg hover:bg-yellow-600"
                       >
                         Edit
                       </Link>
                       <button
                         className="px-4 py-2 ml-2 bg-red-500 text-white rounded-lg hover:bg-red-600"
-                        onClick={() => handleDeleteExpense(expense._id)}
+                        onClick={() => {
+                          handleDeleteExpense(expense._id);
+                        }}
                       >
                         Delete
                       </button>
