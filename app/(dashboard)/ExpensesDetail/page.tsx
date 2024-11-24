@@ -3,15 +3,7 @@ import React, { useEffect, useState } from "react";
 import NavBar from "@/app/components/NavBar";
 import "tailwindcss/tailwind.css";
 import { FaCalendarAlt } from "react-icons/fa";
-import {
-  format,
-  addMonths,
-  subMonths,
-  addDays,
-  startOfMonth,
-  parse,
-} from "date-fns";
-import { id } from "date-fns/locale";
+import { format, addMonths, subMonths, addDays, startOfMonth } from "date-fns";
 import Link from "next/link";
 import { getExpenseDetail } from "@/app/connections/connectToDB";
 
@@ -42,7 +34,7 @@ const ExpensesPage = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const data = await getExpenseDetail(); // Assuming it fetches the payload
+      const data = await getExpenseDetail();
       setDetailSummary(data);
       setExpenses(data);
     };
@@ -60,7 +52,6 @@ const ExpensesPage = () => {
     setCurrentPage(page);
   };
 
-  // Add a function to delete an expense by ID
   const handleDeleteExpense = (id: string) => {
     const updatedExpenses = expenses.filter((expense) => expense._id !== id);
     setExpenses(updatedExpenses);
@@ -75,31 +66,9 @@ const ExpensesPage = () => {
     })
     .filter((expense) => {
       if (date.from && date.to) {
-        // Parse the date from the expense data with the Indonesian locale
-        const expenseDate = parse(expense.date, "dd MMMM yyyy", new Date(), {
-          locale: id,
-        });
-        console.log("Parsed expense date:", expenseDate);
-
-        // Check if the parsed expenseDate is valid
-        if (isNaN(expenseDate.getTime())) {
-          console.error("Invalid expense date:", expense.date);
-          return false;
-        }
-
-        // Parse start and end dates
-        const startDate = new Date(date.from);
-        const endDate = new Date(date.to);
-        console.log("Parsed start date:", startDate);
-        console.log("Parsed end date:", endDate);
-
-        // Check if the start and end dates are valid
-        if (isNaN(startDate.getTime()) || isNaN(endDate.getTime())) {
-          console.error("Invalid date range:", startDate, endDate);
-          return false;
-        }
-
-        // Check if expenseDate is within the range
+        const expenseDate = new Date(expense.date).setHours(0, 0, 0, 0);
+        const startDate = new Date(date.from).setHours(0, 0, 0, 0);
+        const endDate = new Date(date.to).setHours(23, 59, 59, 999);
         return expenseDate >= startDate && expenseDate <= endDate;
       }
       return true;
@@ -158,14 +127,6 @@ const ExpensesPage = () => {
       setDate({ from: date.from, to: day });
     }
   };
-
-  // try {
-  //   const response = getExpenseDetail();
-  //   console.log(`Response from API: ${response}`);
-  // } catch (error) {
-  //   console.log("gagal karena ga ada user_id");
-  //   console.error("Error logging expense:", error);
-  // }
 
   return (
     <>
@@ -303,116 +264,87 @@ const ExpensesPage = () => {
             {/* Filter by Category */}
             <div className="flex justify-between mb-4">
               <div className="flex flex-wrap gap-2">
-                {[
-                  "all",
-                  "food",
-                  "groceries",
-                  "health",
-                  "electricity",
-                  "transportation",
-                  "entertainment",
-                ].map((category) => (
-                  <button
-                    key={category}
-                    className={`px-4 py-2 rounded-lg ${
-                      selectedCategory === category
-                        ? "bg-[#22B786]"
-                        : "bg-gray-300"
-                    } hover:bg-[#22B786] text-black font-bold`}
-                    onClick={() => handleCategoryClick(category)}
-                  >
-                    {category.charAt(0).toUpperCase() + category.slice(1)}
-                  </button>
-                ))}
+                {["all", "food", "transportation", "shopping", "others"].map(
+                  (category) => (
+                    <button
+                      key={category}
+                      className={`px-4 py-2 rounded-lg ${
+                        selectedCategory === category
+                          ? "bg-[#22B786] text-white"
+                          : "bg-[#E8F8F3] text-[#22B786]"
+                      }`}
+                      onClick={() => handleCategoryClick(category)}
+                    >
+                      {category}
+                    </button>
+                  )
+                )}
               </div>
             </div>
 
-            {/* Expenses Table */}
-            <div className="overflow-x-auto bg-white shadow-lg rounded-lg">
-              <table className="min-w-full">
-                <thead className="bg-green-400">
-                  <tr>
-                    <th className="py-3 px-6 text-left">Subject</th>
-                    <th className="py-3 px-2 text-center">Date</th>
-                    <th className="py-3 px-3 text-center">Category</th>
-                    <th className="py-3 px-6 text-center">Total</th>
-                    <th className="py-3 px-2 text-center">Payment Method</th>
-                    <th className="py-3 px-3 text-center">Reimbursable</th>
-                    <th className="py-3 px-6 text-center">Description</th>
-                    <th className="py-3 px-5 text-center">Button</th>
+            {/* Expense Table */}
+            <table className="w-full table-auto text-left text-sm bg-white border border-gray-200 rounded-lg">
+              <thead>
+                <tr className="bg-[#F4F8F8]">
+                  <th className="px-4 py-2 text-[#575252]">#</th>
+                  <th className="px-4 py-2 text-[#575252]">Subject</th>
+                  <th className="px-4 py-2 text-[#575252]">Merchant</th>
+                  <th className="px-4 py-2 text-[#575252]">Date</th>
+                  <th className="px-4 py-2 text-[#575252]">Category</th>
+                  <th className="px-4 py-2 text-[#575252]">Total</th>
+                  <th className="px-4 py-2 text-[#575252]">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                {paginatedExpenses.map((expense, index) => (
+                  <tr key={expense._id} className="border-b border-gray-200">
+                    <td className="px-4 py-2">
+                      {(currentPage - 1) * expensesPerPage + index + 1}
+                    </td>
+                    <td className="px-4 py-2">{expense.subject}</td>
+                    <td className="px-4 py-2">{expense.merchant}</td>
+                    <td className="px-4 py-2">{expense.date}</td>
+                    <td className="px-4 py-2">{expense.category}</td>
+                    <td className="px-4 py-2">{expense.total}</td>
+                    <td className="px-4 py-2">
+                      <Link
+                        href={`/edit-expense/${expense._id}`} // Edit Expense Page (to be created)
+                        className="px-4 py-2 bg-yellow-500 text-white rounded-lg hover:bg-yellow-600"
+                      >
+                        Edit
+                      </Link>
+                      <button
+                        className="px-4 py-2 ml-2 bg-red-500 text-white rounded-lg hover:bg-red-600"
+                        onClick={() => handleDeleteExpense(expense._id)}
+                      >
+                        Delete
+                      </button>
+                    </td>
                   </tr>
-                </thead>
-                <tbody>
-                  {paginatedExpenses.length > 0 ? (
-                    paginatedExpenses.map((expense) => (
-                      <tr key={expense._id} className="border-b">
-                        <td className="py-4 px-6">{expense.subject}</td>
-                        <td className="py-4 px-2 text-center">
-                          {format(new Date(expense.date), "MMM dd, yyyy")}
-                        </td>
-                        <td className="py-4 px-3 text-center">
-                          {expense.category}
-                        </td>
-                        <td className="py-4 px-6 text-center">
-                          Rp{expense.total}
-                        </td>
-                        <td className="py-4 px-2 text-center">
-                          {expense.payment_method}
-                        </td>
-                        <td className="py-4 px-3 text-center">
-                          {expense.reimbuse ? "Yes" : "No"}
-                        </td>
-                        <td className="py-4 px-6 text-center">
-                          {expense.description}
-                        </td>
-                        <td className="flex flex-col justify-between py-[0.4vw] px-[0.4vw] font-bold">
-                          <Link
-                            href="/EditExpenses"
-                            className="mb-[0.2vw] bg-[#22B78680] text-center"
-                          >
-                            Edit
-                          </Link>
-                          <button
-                            className="bg-[#FF8C8C]"
-                            onClick={() => handleDeleteExpense(expense._id)}
-                          >
-                            Delete
-                          </button>
-                        </td>
-                      </tr>
-                    ))
-                  ) : (
-                    <tr>
-                      <td colSpan={7} className="text-center py-4 px-6">
-                        No expenses found
-                      </td>
-                    </tr>
-                  )}
-                </tbody>
-              </table>
-            </div>
+                ))}
+              </tbody>
+            </table>
 
             {/* Pagination */}
-            <div className="flex justify-end items-center mt-6">
-              <button
-                className="px-4 py-2 bg-white text-black rounded-[0.221vw] hover:bg-gray-100 border border-[#22B786]"
-                onClick={() => handlePageChange(currentPage - 1)}
-                disabled={currentPage === 1}
-              >
-                Previous
-              </button>
-              <span className="mx-4 text-2xl px-[1.5vw] py-[0.2vw] bg-[#22B786] rounded-[0.221vw] text-white">
-                {currentPage}
-              </span>
-              <button
-                className="px-7 py-2 bg-white text-black rounded-[0.221vw] hover:bg-gray-100 border border-[#22B786]"
-                onClick={() => handlePageChange(currentPage + 1)}
-                disabled={
-                  currentPage * expensesPerPage >= filteredExpenses.length
-                }
-              >
-                Next
-              </button>
+            <div className="mt-4 flex justify-center gap-2">
+              {Array.from(
+                {
+                  length: Math.ceil(filteredExpenses.length / expensesPerPage),
+                },
+                (_, index) => index + 1
+              ).map((page) => (
+                <button
+                  key={page}
+                  onClick={() => handlePageChange(page)}
+                  className={`px-4 py-2 rounded-md ${
+                    currentPage === page
+                      ? "bg-[#22B786] text-white"
+                      : "bg-[#E8F8F3] text-[#22B786]"
+                  }`}
+                >
+                  {page}
+                </button>
+              ))}
             </div>
           </div>
         </div>
