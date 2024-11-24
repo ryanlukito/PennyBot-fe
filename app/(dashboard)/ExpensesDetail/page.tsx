@@ -11,6 +11,7 @@ import {
   startOfMonth,
   parse,
 } from "date-fns";
+import { id } from "date-fns/locale";
 import Link from "next/link";
 import { getExpenseDetail } from "@/app/connections/connectToDB";
 
@@ -74,8 +75,10 @@ const ExpensesPage = () => {
     })
     .filter((expense) => {
       if (date.from && date.to) {
-        // Parse the date from the expense data
-        const expenseDate = parse(expense.date, "dd MMMM yyyy", new Date());
+        // Parse the date from the expense data with the Indonesian locale
+        const expenseDate = parse(expense.date, "dd MMMM yyyy", new Date(), {
+          locale: id,
+        });
 
         // Log parsed expense date to debug
         console.log("Parsed expense date:", expenseDate);
