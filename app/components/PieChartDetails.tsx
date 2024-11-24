@@ -12,7 +12,7 @@ interface PieChartDetailsProps {
 
 const PieChartDetails: React.FC<PieChartDetailsProps> = ({ data }) => {
   return (
-    <div className="space-y-[0.5vw]">
+    <div className="w-[10vw] h-full space-y-[0.5vw]">
       {data.map((item, index) => (
         <div
           key={index}
