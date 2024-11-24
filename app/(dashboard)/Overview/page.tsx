@@ -14,11 +14,11 @@ const OverviewPage: React.FC = () => {
   useEffect(() => {
     const kontol = async () => {
     const data = await getOverview();
-      await setDataSummary(data);
+      setDataSummary(data);
     }
     kontol();
-    console.log(dataSummary);
   }, []);
+  console.log(dataSummary);
 
   const colorBase = "#22B786";
   const data: ChartData<"bar"> = {
