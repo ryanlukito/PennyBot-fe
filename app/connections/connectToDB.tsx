@@ -118,7 +118,8 @@ export const deleteExpense = async () => {};
 export const getExpenseDetail = async () => {
   try {
     const response = await axios.get(
-      `https://api.ambagandalf.site/expense/detail` // nanti diganti
+      `https://api.ambagandalf.site/expense/detail`,
+      {withCredentials: true}
     );
     console.log(`response from API: ${response.data}`);
     return response.data;
