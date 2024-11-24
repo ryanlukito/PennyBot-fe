@@ -291,6 +291,9 @@ const ExpensesPage = () => {
                   <th className="px-4 py-2 text-[#575252]">Merchant</th>
                   <th className="px-4 py-2 text-[#575252]">Date</th>
                   <th className="px-4 py-2 text-[#575252]">Category</th>
+                  <th className="px-4 py-2 text-[#575252]">Reimbursable</th>
+                  <th className="px-4 py-2 text-[#575252]">Description</th>
+                  <th className="px-4 py-2 text-[#575252]">Payment Method</th>
                   <th className="px-4 py-2 text-[#575252]">Total</th>
                   <th className="px-4 py-2 text-[#575252]">Action</th>
                 </tr>
@@ -305,6 +308,11 @@ const ExpensesPage = () => {
                     <td className="px-4 py-2">{expense.merchant}</td>
                     <td className="px-4 py-2">{expense.date}</td>
                     <td className="px-4 py-2">{expense.category}</td>
+                    <td className="px-4 py-2">
+                      {expense.reimbuse ? "Yes" : "No"}
+                    </td>
+                    <td className="px-4 py-2">{expense.description}</td>
+                    <td className="px-4 py-2">{expense.payment_method}</td>
                     <td className="px-4 py-2">{expense.total}</td>
                     <td className="px-4 py-2">
                       <Link
