@@ -183,7 +183,7 @@ const OverviewPage: React.FC = () => {
               </div>
             </div>
             <div className="w-[54.344vw] h-full bg-white rounded-[0.521vw] p-[3vw] flex items-end relative">
-              <h1 className="top-0 left-0 text-[2.5vw] font-bold absolute">
+              <h1 className="top-0 left-[0.5vw] text-[2vw] font-bold absolute">
                 Summary
               </h1>
               <BarChart data={data} options={options}></BarChart>
