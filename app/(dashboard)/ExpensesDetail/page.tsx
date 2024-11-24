@@ -5,7 +5,7 @@ import "tailwindcss/tailwind.css";
 import { FaCalendarAlt } from "react-icons/fa";
 import { format, addMonths, subMonths, addDays, startOfMonth } from "date-fns";
 import Link from "next/link";
-import { deleteExpense, getExpenseDetail } from "@/app/connections/connectToDB";
+import { getExpenseDetail } from "@/app/connections/connectToDB";
 
 interface Expense {
   _id: string;
@@ -55,7 +55,7 @@ const ExpensesPage = () => {
   const handleDeleteExpense = (id: string) => {
     const updatedExpenses = expenses.filter((expense) => expense._id !== id);
     setExpenses(updatedExpenses);
-    deleteExpense(expenses[0]._id);
+    // deleteExpense(expenses[0]._id);
   };
 
   const filteredExpenses = expenses
