@@ -110,6 +110,8 @@ const OverviewPage: React.FC = () => {
     amount: item.amount,
   }));
 
+  console.log(percentageData);
+
   return (
     <section className="bg-[#E2ECEA] w-screen h-screen relative text-black flex flex-row overflow-hidden">
       <NavBar />
