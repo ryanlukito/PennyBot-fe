@@ -1,6 +1,6 @@
-'use client'
+"use client";
 
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import NavBar from "@/app/components/NavBar";
 import Image from "next/image";
 import BarChart from "@/app/components/BarChart";
@@ -9,12 +9,11 @@ import { ChartData, ChartOptions } from "chart.js";
 import { getOverview } from "@/app/connections/connectToDB";
 
 const OverviewPage: React.FC = () => {
-
-  useEffect(()=>{
+  useEffect(() => {
     const data = getOverview();
     console.log(data);
   }, []);
-  
+
   const colorBase = "#22B786";
   const data: ChartData<"bar"> = {
     labels: ["January", "February", "March", "April", "May"],
@@ -149,7 +148,8 @@ const OverviewPage: React.FC = () => {
                 </h1>
               </div>
             </div>
-            <div className="w-[54.344vw] h-full bg-white rounded-[0.521vw] p-[3vw]">
+            <div className="w-[54.344vw] h-full bg-white rounded-[0.521vw] p-[3vw] flex items-end relative">
+              <h1 className="top-0 left-0 text-[2.5vw] font-bold">Summary</h1>
               <BarChart data={data} options={options}></BarChart>
             </div>
           </div>
