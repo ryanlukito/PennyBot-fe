@@ -187,7 +187,9 @@ const OverviewPage: React.FC = () => {
           </div>
           <div className="w-full h-[15vw] bg-white rounded-[0.521vw] flex justify-around ">
             <PieChart data={data2} options={options2}></PieChart>
-            <PieChartDetails data={percentageData} />
+            <div className="h-full">
+              <PieChartDetails data={percentageData} />
+            </div>
           </div>
         </div>
       </div>
