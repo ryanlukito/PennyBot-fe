@@ -40,8 +40,10 @@ const InputExpensesPage = () => {
     try {
       const response = await postExpenses(payload);
       console.log(`Response from API: ${response.data}`);
+      alert("Expense Added Successfully!");
     } catch (error) {
       console.error("Error logging expense:", error);
+      alert("Expense Added Failed");
     }
   };
 

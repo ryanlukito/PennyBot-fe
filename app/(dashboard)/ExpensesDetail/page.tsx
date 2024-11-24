@@ -6,7 +6,6 @@ import { FaCalendarAlt } from "react-icons/fa";
 import { format, addMonths, subMonths, addDays, startOfMonth } from "date-fns";
 import Link from "next/link";
 import { getExpenseDetail } from "@/app/connections/connectToDB";
-// import { getExpenseDetail } from "@/app/connections/connectToDB";
 
 interface Expense {
   _id: string;
@@ -40,7 +39,7 @@ const ExpensesPage = () => {
     payment_method: ["Cash", "Credit Card", "Debit Card"][i % 3],
   }));
 
-  useEffect(()=>{
+  useEffect(() => {
     const data = getExpenseDetail();
     console.log(data);
   }, []);

@@ -36,9 +36,11 @@ const EditExpenses = () => {
     try {
       const response = await editExpenses(payload);
       console.log(`Response from API: ${response.data}`);
+      alert("Expense Update Successfully!");
     } catch (error) {
       console.log("gagal karena ga ada user_id");
       console.error("Error logging expense:", error);
+      alert("Expense Update Failed");
     }
   };
 

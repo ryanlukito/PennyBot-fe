@@ -160,7 +160,7 @@ const Page = () => {
           />
           <button
             type="submit"
-            className="ml-4 bg-blue-500 text-white p-2 rounded-xl hover:bg-green-600 focus:outline-none disabled:bg-blue-300"
+            className="ml-4 bg-green-400 text-white p-2 rounded-xl hover:bg-green-600 focus:outline-none disabled:bg-blue-300"
             disabled={loading}
           >
             Submit

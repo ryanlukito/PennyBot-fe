@@ -31,7 +31,9 @@ const LoginPage = () => {
           withCredentials: true,
         }
       );
-      alert(JSON.stringify(data));
+      alert("Login Success!");
+      console.log(data);
+      // alert(JSON.stringify(data));
       // redirect the user to /Overview
       push("/");
     } catch (e) {

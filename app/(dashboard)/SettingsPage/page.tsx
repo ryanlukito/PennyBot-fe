@@ -41,8 +41,10 @@ const SettingsPage = () => {
     try {
       const response = await updateUser(payload);
       console.log(`Response from API: ${response.data}`);
+      alert("User Updated Successfully!");
     } catch (error) {
       console.error("Error logging expense:", error);
+      alert("User Update Failed");
     }
   };
 
@@ -65,8 +67,10 @@ const SettingsPage = () => {
     try {
       const response = await updateIncome(payload);
       console.log(`Response from API: ${response.data}`);
+      alert("Income Updated Successfully!");
     } catch (error) {
       console.error("Error logging expense:", error);
+      alert("Income Update Failed");
     }
   };
 
