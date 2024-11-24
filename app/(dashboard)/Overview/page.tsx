@@ -18,8 +18,11 @@ const OverviewPage: React.FC = () => {
         setOverviewData(data);
     };
     fetchData();
-    console.log(overviewData);
   }, []);
+
+  useEffect(() => {
+    console.log(`from summary ${overviewData}`);
+  }, [overviewData]);
 
   const colorBase = "#22B786";
   const data: ChartData<"bar"> = {
