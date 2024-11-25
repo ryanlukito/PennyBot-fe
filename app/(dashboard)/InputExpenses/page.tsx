@@ -8,7 +8,7 @@ import { postExpenses } from "@/app/connections/connectToDB";
 const InputExpensesPage = () => {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-
+  
     const formElements = event.currentTarget.elements as typeof event.currentTarget.elements & {
       subject: HTMLInputElement;
       merchant: HTMLInputElement;
@@ -20,8 +20,22 @@ const InputExpensesPage = () => {
       paymentMethod: HTMLInputElement;
       invoiceFile: HTMLInputElement;
     };
-
-    // Create FormData for file upload
+  
+    console.log("Form elements:", formElements);
+  
+    // Check if the file input exists
+    if (!formElements.invoiceFile) {
+      console.error("File input is missing.");
+      return alert("File input field is not found.");
+    }
+  
+    // Check if a file has been selected
+    if (!formElements.invoiceFile.files || !formElements.invoiceFile.files[0]) {
+      console.error("No file selected for upload.");
+      return alert("Please select a file before submitting.");
+    }
+  
+    // Create FormData
     const formData = new FormData();
     formData.append("subject", formElements.subject.value);
     formData.append("merchant", formElements.merchant.value);
@@ -31,14 +45,8 @@ const InputExpensesPage = () => {
     formData.append("category", formElements.category.value);
     formData.append("description", formElements.description.value);
     formData.append("payment_method", formElements.paymentMethod.value);
-
-    // Add the selected file if available
-    if (formElements.invoiceFile?.files?.[0]) {
-      formData.append("image", formElements.invoiceFile.files[0]);
-    } else {
-      console.warn("No file selected for upload.");
-    }
-
+    formData.append("image", formElements.invoiceFile.files[0]);
+  
     try {
       const response = await postExpenses(formData);
       console.log(`Response from API: ${response}`);
@@ -48,6 +56,7 @@ const InputExpensesPage = () => {
       alert("Expense Added Failed");
     }
   };
+  
 
   return (
     <section className="bg-[#fff] w-screen h-screen relative text-black flex items-center">
