@@ -50,7 +50,7 @@ const NavBar = () => {
     const fetchData = async () => {
       try {
         const data = await getDataUser();
-        setUsername(data || "John Doe");
+        setUsername(data.username || "John Doe");
       } catch (error) {
         console.error("Error fetching user data:", error);
         setUsername("John Doe");
