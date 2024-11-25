@@ -4,14 +4,11 @@ import React from "react";
 import NavBar from "@/app/components/NavBar";
 import { FaPlus } from "react-icons/fa6";
 import { postExpenses } from "@/app/connections/connectToDB";
-// import Cookies from "js-cookie";
-// import { InputExpensePayload } from "@/app/typesCollections/types";
 
 const InputExpensesPage = () => {
-
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-  
+
     const formElements = event.currentTarget.elements as typeof event.currentTarget.elements & {
       subject: HTMLInputElement;
       merchant: HTMLInputElement;
@@ -21,9 +18,9 @@ const InputExpensesPage = () => {
       category: HTMLInputElement;
       description: HTMLInputElement;
       paymentMethod: HTMLInputElement;
-      invoiceFile: HTMLInputElement; // Add for file input
+      invoiceFile: HTMLInputElement;
     };
-  
+
     // Create FormData for file upload
     const formData = new FormData();
     formData.append("subject", formElements.subject.value);
@@ -34,12 +31,14 @@ const InputExpensesPage = () => {
     formData.append("category", formElements.category.value);
     formData.append("description", formElements.description.value);
     formData.append("payment_method", formElements.paymentMethod.value);
-  
+
     // Add the selected file if available
-    if (formElements.invoiceFile.files && formElements.invoiceFile.files[0]) {
+    if (formElements.invoiceFile?.files?.[0]) {
       formData.append("image", formElements.invoiceFile.files[0]);
+    } else {
+      console.warn("No file selected for upload.");
     }
-  
+
     try {
       const response = await postExpenses(formData);
       console.log(`Response from API: ${response}`);
@@ -49,7 +48,6 @@ const InputExpensesPage = () => {
       alert("Expense Added Failed");
     }
   };
-  
 
   return (
     <section className="bg-[#fff] w-screen h-screen relative text-black flex items-center">
@@ -100,7 +98,7 @@ const InputExpensesPage = () => {
             </div>
             <div className="px-[7.5vw]">
               <input type="checkbox" id="reimburse" name="reimburse" />
-              <label htmlFor="" className="ml-[0.3vw]">
+              <label htmlFor="reimburse" className="ml-[0.3vw]">
                 Reimbursable
               </label>
             </div>
@@ -136,7 +134,7 @@ const InputExpensesPage = () => {
                 required
               />
             </div>
-            <button className="w-[8.177vw] h-[2.865vw] font-bold text-[1.042vw] rounded-[0.521vw] bg-[#22B786] text-white hover:scale-[102%] ease-in-out duration-300 ml-[7.7vw] ">
+            <button className="w-[8.177vw] h-[2.865vw] font-bold text-[1.042vw] rounded-[0.521vw] bg-[#22B786] text-white hover:scale-[102%] ease-in-out duration-300 ml-[7.7vw]">
               Save
             </button>
           </div>
@@ -144,8 +142,13 @@ const InputExpensesPage = () => {
       </div>
       <div className="w-[26.302vw] h-[32.76vw] bg-[#E2ECEA] text-[1.042vw] mb-[4.1vw] flex items-center justify-center rounded-[0.521vw]">
         <div className="flex flex-col items-center justify-center">
-          <input id="file-input" type="file" className="hidden" />
-          <label htmlFor="file-input" className="cursor-pointer">
+          <input
+            type="file"
+            id="invoiceFile"
+            name="invoiceFile"
+            className="bg-[#E2ECEA] w-[31.771vw] h-[2.396vw] rounded-[0.521vw] px-[1vw]"
+          />
+          <label htmlFor="invoiceFile" className="cursor-pointer">
             <FaPlus className="text-[4vw]" />
             <h1 className="text-[1vw]">Upload an Invoice</h1>
           </label>
