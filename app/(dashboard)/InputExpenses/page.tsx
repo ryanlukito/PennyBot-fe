@@ -139,10 +139,16 @@ const InputExpensesPage = () => {
         </form>
       </div>
       <div className="w-[26.302vw] h-[32.76vw] bg-[#E2ECEA] text-[1.042vw] mb-[4.1vw] flex items-center justify-center rounded-[0.521vw]">
-        <button className="flex flex-col items-center justify-center">
-          <FaPlus className="text-[4vw]" />
-          <h1>Upload an Invoice</h1>
-        </button>
+        <div className="flex flex-col items-center justify-center">
+          {/* Hidden input */}
+          <input id="file-input" type="file" className="hidden" />
+
+          {/* Label triggers the hidden input */}
+          <label htmlFor="file-input" className="cursor-pointer">
+            <FaPlus className="text-[4vw]" />
+          </label>
+          <h1 className="text-[1vw]">Upload an Invoice</h1>
+        </div>
       </div>
     </section>
   );
