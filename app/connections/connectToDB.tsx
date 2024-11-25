@@ -182,3 +182,24 @@ export const getOverview = async () => {
     }
   }
 };
+
+export const getDataUser = async () => {
+  try {
+    const response = await axios.get(
+      `https://api.ambagandalf.site/user`, // nanti diganti
+      { withCredentials: true }
+    );
+    console.log(`response from API: ${response.data}`);
+    return response.data;
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      console.error("Axios error:", error.response?.data || error.message);
+      throw new Error(
+        error.response?.data || "An error occured while sending the request"
+      );
+    } else {
+      console.error("Unexpected error:", error);
+      throw new Error("An unexpected error occured.");
+    }
+  }
+};

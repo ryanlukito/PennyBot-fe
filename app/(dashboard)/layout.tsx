@@ -35,7 +35,16 @@ export default function PageLayout({
   }, [router]);
 
   if (!isSuccess) {
-    return <h1>Loading...</h1>;
+    return (
+      <div className="h-screen flex flex-col justify-center items-center bg-gray-100">
+        <h1 className="text-2xl font-bold text-gray-700 mb-4">Loading...</h1>
+        <div className="flex space-x-2">
+          <div className="w-4 h-4 bg-green-500 rounded-full animate-bounce delay-75"></div>
+          <div className="w-4 h-4 bg-green-500 rounded-full animate-bounce delay-150"></div>
+          <div className="w-4 h-4 bg-green-500 rounded-full animate-bounce delay-225"></div>
+        </div>
+      </div>
+    );
   }
   return <main>{children}</main>;
 }

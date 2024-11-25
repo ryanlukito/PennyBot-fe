@@ -1,8 +1,9 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { getDataUser } from "@/app/connections/connectToDB";
 
 const sources = [
   {
@@ -43,6 +44,21 @@ const sources = [
 ];
 
 const NavBar = () => {
+  const [username, setUsername] = useState<string>("Loading...");
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await getDataUser();
+        setUsername(data || "John Doe");
+      } catch (error) {
+        console.error("Error fetching user data:", error);
+        setUsername("John Doe");
+      }
+    };
+    fetchData();
+  }, []);
+
   return (
     <div className="h-screen w-[19.635vw] bg-[#F7F7F9] shadow-[0.208vw_0_0.208vw_rgba(0,0,0,0.3)] flex flex-col items-center relative">
       <div className="w-[11.615vw] h-[15.104vw] flex flex-col justify-between items-center mt-[1.5vw]">
@@ -54,7 +70,7 @@ const NavBar = () => {
           alt="profile picture"
           className="w-[8.17vw] h-[8.17vw]"
         />
-        <h1 className="text-[1.042vw] font-bold text-black">Adam Miah</h1>
+        <h1 className="text-[1.042vw] font-bold text-black">{username}</h1>
       </div>
       <div className="w-[11.367vw] h-[15.99vw] text-[1.042vw] font-bold mt-[2vw] flex flex-col justify-around items-start">
         {sources.map((client, index) => (
