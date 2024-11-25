@@ -1,18 +1,23 @@
 import axios from "axios";
 import {
-  InputExpensePayload,
+  // InputExpensePayload,
   SignUpPayload,
   EditExpensesPayload,
   UpdateUserPayload,
   UpdateIncomePayload,
 } from "@/app/typesCollections/types";
 
-export const postExpenses = async (payload: InputExpensePayload) => {
+export const postExpenses = async (formData: FormData) => {
   try {
     const response = await axios.post(
       `https://api.ambagandalf.site/expense`,
-      payload,
-      { withCredentials: true }
+      formData,
+      {
+        withCredentials: true,
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      }
     );
     console.log(`response from API: ${response}`);
     return response.data;
@@ -20,14 +25,15 @@ export const postExpenses = async (payload: InputExpensePayload) => {
     if (axios.isAxiosError(error)) {
       console.error("Axios error:", error.response?.data || error.message);
       throw new Error(
-        error.response?.data || "An error occured while sending the request"
+        error.response?.data || "An error occurred while sending the request"
       );
     } else {
       console.error("Unexpected error:", error);
-      throw new Error("An unexpected error occured.");
+      throw new Error("An unexpected error occurred.");
     }
   }
 };
+
 
 export const editExpenses = async (
   payload: EditExpensesPayload,

@@ -5,14 +5,14 @@ import NavBar from "@/app/components/NavBar";
 import { FaPlus } from "react-icons/fa6";
 import { postExpenses } from "@/app/connections/connectToDB";
 // import Cookies from "js-cookie";
-import { InputExpensePayload } from "@/app/typesCollections/types";
+// import { InputExpensePayload } from "@/app/typesCollections/types";
 
 const InputExpensesPage = () => {
+
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-
-    const formElements = event.currentTarget
-      .elements as typeof event.currentTarget.elements & {
+  
+    const formElements = event.currentTarget.elements as typeof event.currentTarget.elements & {
       subject: HTMLInputElement;
       merchant: HTMLInputElement;
       date: HTMLInputElement;
@@ -21,31 +21,35 @@ const InputExpensesPage = () => {
       category: HTMLInputElement;
       description: HTMLInputElement;
       paymentMethod: HTMLInputElement;
+      invoiceFile: HTMLInputElement; // Add for file input
     };
-    const payload: InputExpensePayload = {
-      subject: formElements.subject.value,
-      merchant: formElements.merchant.value,
-      date: formElements.date.value,
-      total: parseInt(formElements.total.value),
-      reimbuse: formElements.reimburse.checked,
-      category: formElements.category.value,
-      description: formElements.description.value,
-      payment_method: formElements.paymentMethod.value,
-      invoice: "dummy",
-    };
-
-    console.log(payload);
-
-    // Input expense into database
+  
+    // Create FormData for file upload
+    const formData = new FormData();
+    formData.append("subject", formElements.subject.value);
+    formData.append("merchant", formElements.merchant.value);
+    formData.append("date", formElements.date.value);
+    formData.append("total", formElements.total.value);
+    formData.append("reimbuse", formElements.reimburse.checked.toString());
+    formData.append("category", formElements.category.value);
+    formData.append("description", formElements.description.value);
+    formData.append("payment_method", formElements.paymentMethod.value);
+  
+    // Add the selected file if available
+    if (formElements.invoiceFile.files && formElements.invoiceFile.files[0]) {
+      formData.append("image", formElements.invoiceFile.files[0]);
+    }
+  
     try {
-      const response = await postExpenses(payload);
-      console.log(`Response from API: ${response.data}`);
+      const response = await postExpenses(formData);
+      console.log(`Response from API: ${response}`);
       alert("Expense Added Successfully!");
     } catch (error) {
       console.error("Error logging expense:", error);
       alert("Expense Added Failed");
     }
   };
+  
 
   return (
     <section className="bg-[#fff] w-screen h-screen relative text-black flex items-center">
