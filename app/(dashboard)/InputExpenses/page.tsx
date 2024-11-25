@@ -46,7 +46,7 @@ const InputExpensesPage = () => {
     formData.append("description", formElements.description.value);
     formData.append("payment_method", formElements.paymentMethod.value);
     formData.append("image", formElements.invoiceFile.files[0]);
-  
+    console.log(formData);
     try {
       const response = await postExpenses(formData);
       console.log(`Response from API: ${response}`);
