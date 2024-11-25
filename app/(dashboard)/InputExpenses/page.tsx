@@ -152,7 +152,12 @@ const InputExpensesPage = () => {
       </div>
       <div className="w-[26.302vw] h-[32.76vw] bg-[#E2ECEA] text-[1.042vw] mb-[4.1vw] flex items-center justify-center rounded-[0.521vw] ml-[0.5vw]">
         <div className="flex flex-col items-center justify-center">
-          <input type="file" id="invoiceFile" name="invoiceFile" />
+          <input
+            type="file"
+            id="invoiceFile"
+            name="invoiceFile"
+            className="hidden"
+          />
           <label htmlFor="invoiceFile" className="cursor-pointer">
             <FaPlus className="text-[4vw]" />
             <h1 className="text-[1vw]">Upload an Invoice</h1>
