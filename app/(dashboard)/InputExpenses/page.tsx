@@ -158,7 +158,10 @@ const InputExpensesPage = () => {
             name="invoiceFile"
             className="hidden"
           />
-          <label htmlFor="invoiceFile" className="cursor-pointer">
+          <label
+            htmlFor="invoiceFile"
+            className="cursor-pointer flex flex-col items-center"
+          >
             <FaPlus className="text-[4vw]" />
             <h1 className="text-[1vw]">Upload an Invoice</h1>
           </label>
