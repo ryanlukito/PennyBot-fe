@@ -10,7 +10,7 @@ import { getOverview } from "@/app/connections/connectToDB";
 import PieChartDetails from "@/app/components/PieChartDetails";
 
 interface Money {
-  total_balance: number;
+  balance: number;
   total_income: number;
   total_expanse: number;
 }
@@ -141,7 +141,7 @@ const OverviewPage: React.FC = () => {
                 />
                 <h1 className="text-[0.938vw] text-[#484545]">Total Balance</h1>
                 {dataSummary ? (
-                  <p>Rp {dataSummary.money.total_balance}</p>
+                  <p>Rp {dataSummary.money.balance}</p>
                 ) : (
                   <p>Rp 0</p>
                 )}
