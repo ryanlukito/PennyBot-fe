@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 import { serialize } from "cookie";
 import { COOKIE_NAME } from "@/constants";
 
-const MAX_AGE = 60 * 60 * 24 * 10000;
+const MAX_AGE = 60 * 60 * 24 * 1000;
 
 export async function POST(request: Request) {
   const body = await request.json();
