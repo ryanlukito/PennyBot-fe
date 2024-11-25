@@ -8,8 +8,9 @@ import { postExpenses } from "@/app/connections/connectToDB";
 const InputExpensesPage = () => {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-  
-    const formElements = event.currentTarget.elements as typeof event.currentTarget.elements & {
+
+    const formElements = event.currentTarget
+      .elements as typeof event.currentTarget.elements & {
       subject: HTMLInputElement;
       merchant: HTMLInputElement;
       date: HTMLInputElement;
@@ -20,21 +21,21 @@ const InputExpensesPage = () => {
       paymentMethod: HTMLInputElement;
       invoiceFile: HTMLInputElement;
     };
-  
+
     console.log("Form elements:", formElements);
-  
+
     // Check if the file input exists
     if (!formElements.invoiceFile) {
       console.error("File input is missing.");
       return alert("File input field is not found.");
     }
-  
+
     // Check if a file has been selected
     if (!formElements.invoiceFile.files || !formElements.invoiceFile.files[0]) {
       console.error("No file selected for upload.");
       return alert("Please select a file before submitting.");
     }
-  
+
     // Create FormData
     const formData = new FormData();
     formData.append("subject", formElements.subject.value);
@@ -56,7 +57,6 @@ const InputExpensesPage = () => {
       alert("Expense Added Failed");
     }
   };
-  
 
   return (
     <section className="bg-[#fff] w-screen h-screen relative text-black flex items-center">
@@ -143,25 +143,26 @@ const InputExpensesPage = () => {
                 required
               />
             </div>
-            <div className="w-[26.302vw] h-[32.76vw] bg-[#E2ECEA] text-[1.042vw] mb-[4.1vw] flex items-center justify-center rounded-[0.521vw]">
-              <div className="flex flex-col items-center justify-center">
-                <input
-                  type="file"
-                  id="invoiceFile"
-                  name="invoiceFile"
-                  className="bg-[#E2ECEA] w-[31.771vw] h-[2.396vw] rounded-[0.521vw] px-[1vw]"
-                />
-                <label htmlFor="invoiceFile" className="cursor-pointer">
-                  <FaPlus className="text-[4vw]" />
-                  <h1 className="text-[1vw]">Upload an Invoice</h1>
-                </label>
-              </div>
-            </div>
+
             <button className="w-[8.177vw] h-[2.865vw] font-bold text-[1.042vw] rounded-[0.521vw] bg-[#22B786] text-white hover:scale-[102%] ease-in-out duration-300 ml-[7.7vw]">
               Save
             </button>
           </div>
         </form>
+        <div className="w-[26.302vw] h-[32.76vw] bg-[#E2ECEA] text-[1.042vw] mb-[4.1vw] flex items-center justify-center rounded-[0.521vw]">
+          <div className="flex flex-col items-center justify-center">
+            <input
+              type="file"
+              id="invoiceFile"
+              name="invoiceFile"
+              className="bg-[#E2ECEA] w-[31.771vw] h-[2.396vw] rounded-[0.521vw] px-[1vw]"
+            />
+            <label htmlFor="invoiceFile" className="cursor-pointer">
+              <FaPlus className="text-[4vw]" />
+              <h1 className="text-[1vw]">Upload an Invoice</h1>
+            </label>
+          </div>
+        </div>
       </div>
     </section>
   );
