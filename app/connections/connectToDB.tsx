@@ -35,7 +35,7 @@ export const editExpenses = async (
 ) => {
   try {
     const response = await axios.patch(
-      `https://api.ambagandalf.site/expense/${id}`,
+      `https://api.ambagandalf.site/expense?id=${id}`,
       payload,
       { withCredentials: true }
     );

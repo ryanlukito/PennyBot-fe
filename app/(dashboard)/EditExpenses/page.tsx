@@ -1,15 +1,21 @@
 "use client";
 
 import React from "react";
-import { useParams } from "next/navigation";
+// import { useParams } from "next/navigation";
 import NavBar from "@/app/components/NavBar";
 import { FaPlus } from "react-icons/fa";
 import { editExpenses } from "@/app/connections/connectToDB";
 import { EditExpensesPayload } from "@/app/typesCollections/types";
+import { useSearchParams } from "next/navigation";
 
 const EditExpenses: React.FC = () => {
-  const { id } = useParams(); // Extract `id` from URL params
-  // console.log(`check id: ${id}`);
+  const searchParams = useSearchParams();
+  const id = searchParams.get("id");
+
+  if (!id) {
+    alert("No Expense ID provided.");
+    return;
+  }
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
