@@ -147,9 +147,7 @@ const InputExpensesPage = () => {
               Save
             </button>
           </div>
-        </form>
-      </div>
-      <div className="w-[26.302vw] h-[32.76vw] bg-[#E2ECEA] text-[1.042vw] mb-[4.1vw] flex items-center justify-center rounded-[0.521vw]">
+          <div className="w-[26.302vw] h-[32.76vw] bg-[#E2ECEA] text-[1.042vw] mb-[4.1vw] flex items-center justify-center rounded-[0.521vw]">
         <div className="flex flex-col items-center justify-center">
           <input
             type="file"
@@ -163,6 +161,9 @@ const InputExpensesPage = () => {
           </label>
         </div>
       </div>
+        </form>
+      </div>
+      
     </section>
   );
 };
