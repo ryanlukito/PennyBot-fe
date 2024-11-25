@@ -70,7 +70,13 @@ const NavBar = () => {
           alt="profile picture"
           className="w-[8.17vw] h-[8.17vw]"
         />
-        <h1 className="text-[1.042vw] font-bold text-black">{username}</h1>
+        <h1
+          className={`text-[1.042vw] font-bold text-black transition-opacity duration-300 ${
+            username === "Loading..." ? "opacity-50" : "opacity-100"
+          }`}
+        >
+          {username}
+        </h1>
       </div>
       <div className="w-[11.367vw] h-[15.99vw] text-[1.042vw] font-bold mt-[2vw] flex flex-col justify-around items-start">
         {sources.map((client, index) => (
