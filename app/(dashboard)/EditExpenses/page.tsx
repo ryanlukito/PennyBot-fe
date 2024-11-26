@@ -94,7 +94,7 @@ const EditExpenses: React.FC = () => {
       <div className="h-full py-[1.6vw] px-[2vw]">
         <h1 className="text-[2.5vw] font-bold text-[#22B786]">Edit Expenses</h1>
         <form onSubmit={handleSubmit} className="flex flex-row">
-          <div className="w-[39.323vw] h-[36vw] text-[1.042vw] mt-[2vw] flex flex-col justify-between">
+          <div className="w-[39.323vw] h-[36vw] text-[1.042vw] mt-[2vw] flex flex-col justify-between items-center">
             <div className="flex justify-between items-center">
               <h1>Subject</h1>
               <input
