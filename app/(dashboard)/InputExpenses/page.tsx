@@ -62,26 +62,40 @@ const InputExpensesPage = () => {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
   
+    // Create FormData from the form element
     const formData = new FormData(event.currentTarget);
   
-    // Handle checkbox explicitly
-    const reimburseChecked = (event.currentTarget.elements.namedItem("reimburse") as HTMLInputElement)?.checked;
-    formData.set("reimbursable", reimburseChecked ? "true" : "false");
+    // Handle "reimburse" checkbox explicitly
+    const reimburseChecked = (
+      event.currentTarget.elements.namedItem("reimburse") as HTMLInputElement
+    )?.checked;
+    formData.set("reimbuse", reimburseChecked ? "true" : "false");
+  
+    // Validate required fields
+    const requiredFields = ["subject", "merchant", "date", "total", "payment_method"];
+    for (const field of requiredFields) {
+      if (!formData.get(field)) {
+        alert(`Please fill out the required field: ${field}`);
+        return;
+      }
+    }
+  
+    // Validate the file upload
+    const fileInput = formData.get("invoiceFile") as File | null;
+    if (!fileInput) {
+      alert("Please upload an invoice file before submitting.");
+      return;
+    }
+    formData.set("invoiceFile", fileInput); // Match field name expected by backend (Multer).
   
     // Debug: Log all FormData entries
     for (const [key, value] of formData.entries()) {
       console.log(key, value);
     }
   
-    // Ensure file is uploaded
-    const fileInput = formData.get("invoiceFile") as File | null;
-    if (!fileInput) {
-      alert("Please upload an invoice file before submitting.");
-      return;
-    }
-  
     try {
-      const result = await postExpenses(formData); // Ensure `postExpenses` handles FormData correctly
+      // Call the API to add the expense
+      const result = await postExpenses(formData);
       console.log("Expense added successfully:", result);
       alert("Expense added successfully!");
     } catch (error) {
@@ -90,7 +104,6 @@ const InputExpensesPage = () => {
     }
   };
   
-
   return (
     <section className="bg-[#fff] w-screen h-screen relative text-black flex items-center">
       <NavBar />
