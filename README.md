@@ -1,36 +1,34 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Tugas Pengambangan Aplikasi Web Penny Track
 
-## Getting Started
+## Penny Track
 
-First, run the development server:
+Penny Track merupakan website sederhana untuk membantu user menuliskan seluruh transaksi yang dilakukan. Website ini akan mengakumulasikan nominal transaksi dari user sebagai financial report. Harapannya website ini dapat membantu user dalam mengendalikan jumlah pengeluaran dan bisa berhemat. Sebagai fitur tambahan, website ini juga dilengkapi dengan chatbot berbasis LLM dari Groq yang bisa memberikan nasihat mengenai hidup berhemat untuk setiap user.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+**Teknologi yang digunakan**:
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- **MongoDB** database untuk penyimpanan data.
+- **Express JS** server backend untuk API.
+- **React (NextJS)** framework frontend.
+- **Node JS** runtime untuk backend.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Anggota Kelompok
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| **Nama**                 | **NIM**            |
+| ------------------------ | ------------------ |
+| Rizkita Alisha Ramadhani | 22/494942/TK/54347 |
+| Ryan Krishandi Lukito    | 22/497249/TK/54488 |
+| Brian Tirafi Aufauzan    | 22/497916/TK/54592 |
+| Raffa Alzena Zhafirah    | 22/505656/TK/55353 |
+| Alex Cinatra             | 22/505820/TK/55377 |
 
-## Learn More
+## Link Website
 
-To learn more about Next.js, take a look at the following resources:
+[Penny Track](ambagandalf.site)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Insight
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+[Video Presentasi dan Demo](drive.google.com)
 
-## Deploy on Vercel
+## Link Presentasi Canva
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+[Slide Presentasi](https://www.canva.com/design/DAGXMLRtmXw/MOIhrDiqvpQ5NTRfz1QTbw/edit?utm_content=DAGXMLRtmXw&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
