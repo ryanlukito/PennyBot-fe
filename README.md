@@ -25,9 +25,9 @@ Penny Track merupakan website sederhana untuk membantu user menuliskan seluruh t
 
 [Penny Track](https://ambagandalf.site)
 
-## Insight
+## Video Presentasi
 
-[Video Presentasi dan Demo](drive.google.com)
+[Video Presentasi dan Demo](https://drive.google.com/file/d/1Rczjtj6CvI1JddrqyWTXbYOs4l3syFLJ/view?usp=sharing)
 
 ## Link Presentasi Canva
 
