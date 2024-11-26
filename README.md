@@ -21,6 +21,20 @@ Penny Track merupakan website sederhana untuk membantu user menuliskan seluruh t
 | Raffa Alzena Zhafirah    | 22/505656/TK/55353 |
 | Alex Cinatra             | 22/505820/TK/55377 |
 
+### Script Command to start the server
+
+clone repo ini dan masuk ke direktori yang telah diclone
+
+    git clone https://github.com/ryanlukito/PennyBot-fe.git
+
+install semua dependencies dan library yang dipakai
+
+    npm i
+
+jalankan server
+
+    npm run dev
+
 ## Link Website
 
 [Penny Track](https://ambagandalf.site)
