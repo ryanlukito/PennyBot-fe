@@ -89,7 +89,6 @@ const InputExpensesPage = () => {
     formData.append("description", formElements.description.value);
     formData.append("payment_method", formElements.paymentMethod.value);
     formData.append("image", formElements.invoiceFile.files[0]);
-
     console.log(formData);
   
     try {
@@ -106,9 +105,9 @@ const InputExpensesPage = () => {
   return (
     <section className="bg-[#fff] w-screen h-screen relative text-black flex items-center">
       <NavBar />
-      <div className="h-full py-[1.6vw] px-[2vw]">
+      <div className="w-[80.365vw] h-full py-[1.6vw] px-[2vw]">
         <h1 className="text-[2.5vw] font-bold text-[#22B786]">New Expenses</h1>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="flex items-center ml-[1vw]">
           <div className="w-[39.323vw] h-[36vw] text-[1.042vw] mt-[2vw] flex flex-col justify-between">
             <div className="flex justify-between items-center">
               <h1>Subject</h1>
@@ -193,21 +192,24 @@ const InputExpensesPage = () => {
               Save
             </button>
           </div>
+          <div className="w-[26.302vw] h-[32.76vw] bg-[#E2ECEA] text-[1.042vw] mb-[4.1vw] flex items-center justify-center rounded-[0.521vw] ml-[0.5vw]">
+            <div className="flex flex-col items-center justify-center">
+              <input
+                type="file"
+                id="invoiceFile"
+                name="invoiceFile"
+                className="hidden"
+              />
+              <label
+                htmlFor="invoiceFile"
+                className="cursor-pointer flex flex-col items-center"
+              >
+                <FaPlus className="text-[4vw]" />
+                <h1 className="text-[1vw]">Upload an Invoice</h1>
+              </label>
+            </div>
+          </div>
         </form>
-      </div>
-      <div className="w-[26.302vw] h-[32.76vw] bg-[#E2ECEA] text-[1.042vw] mb-[4.1vw] flex items-center justify-center rounded-[0.521vw] ml-[0.5vw]">
-        <div className="flex flex-col items-center justify-center">
-          <input
-            type="file"
-            id="invoiceFile"
-            name="invoiceFile"
-            className="bg-[#E2ECEA] w-[31.771vw] h-[2.396vw] rounded-[0.521vw] px-[1vw]"
-          />
-          <label htmlFor="invoiceFile" className="cursor-pointer">
-            <FaPlus className="text-[4vw]" />
-            <h1 className="text-[1vw]">Upload an Invoice</h1>
-          </label>
-        </div>
       </div>
     </section>
   );

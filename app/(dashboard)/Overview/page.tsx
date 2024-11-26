@@ -127,7 +127,6 @@ const OverviewPage: React.FC = () => {
             />
             <h1 className="font-bold text-[1.8vw] ml-[0.5vw]">Overview</h1>
           </div>
-          <div className="w-[20vw] h-[2.813vw] bg-white rounded-[0.521vw]"></div>
         </div>
         <div className="w-[69.531vw] h-[46vw] flex flex-col justify-around ml-[4.7vw] mt-[1vw]">
           <div className="w-full h-[25.031vw] flex justify-between">
