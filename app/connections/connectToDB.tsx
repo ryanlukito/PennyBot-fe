@@ -2,7 +2,7 @@ import axios from "axios";
 import {
   // InputExpensePayload,
   SignUpPayload,
-  EditExpensesPayload,
+  // EditExpensesPayload,
   UpdateUserPayload,
   UpdateIncomePayload,
 } from "@/app/typesCollections/types";
@@ -35,7 +35,7 @@ export const postExpenses = async (formData: FormData) => {
 };
 
 export const editExpenses = async (
-  payload: EditExpensesPayload,
+  payload: FormData,
   id: string
 ) => {
   try {

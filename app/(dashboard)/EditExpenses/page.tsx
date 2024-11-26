@@ -5,7 +5,7 @@ import React, { useEffect, useState } from "react";
 import NavBar from "@/app/components/NavBar";
 import { FaPlus } from "react-icons/fa";
 import { editExpenses, getExactExpense } from "@/app/connections/connectToDB";
-import { EditExpensesPayload } from "@/app/typesCollections/types";
+// import { EditExpensesPayload } from "@/app/typesCollections/types";
 import { useSearchParams } from "next/navigation";
 
 interface ExpenseItem {
@@ -51,35 +51,35 @@ const EditExpenses: React.FC = () => {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    const formElements = event.currentTarget
-      .elements as typeof event.currentTarget.elements & {
-      subject: HTMLInputElement;
-      merchant: HTMLInputElement;
-      date: HTMLInputElement;
-      total: HTMLInputElement;
-      reimburse: HTMLInputElement;
-      category: HTMLInputElement;
-      description: HTMLInputElement;
-      paymentMethod: HTMLInputElement;
-      invoice: HTMLInputElement;
-    };
+    const formData = new FormData(event.currentTarget);
+    
+    const reimburseChecked = (
+      event.currentTarget.elements.namedItem("reimburse") as HTMLInputElement
+    )?.checked;
+    formData.set("reimbuse", reimburseChecked ? "true" : "false");
 
-    const payload: EditExpensesPayload = {
-      subject: formElements.subject.value,
-      merchant: formElements.merchant.value,
-      date: formElements.date.value,
-      total: parseInt(formElements.total.value),
-      reimbuse: formElements.reimburse.checked,
-      category: formElements.category.value,
-      description: formElements.description.value,
-      payment_method: formElements.paymentMethod.value,
-      invoice: "dummy",
-    };
-    console.log(payload);
+    const requiredFields = ["subject", "merchant", "date", "total", "payment_method"];
+    for (const field of requiredFields) {
+      if (!formData.get(field)) {
+        alert(`Please fill out the required field: ${field}`);
+        return;
+      }
+    }
+
+    const fileInput = formData.get("invoiceFile") as File | null;
+    if (!fileInput) {
+      alert("Please upload an invoice file before submitting.");
+      return;
+    }
+    formData.set("invoiceFile", fileInput);
+
+    for (const [key, value] of formData.entries()) {
+      console.log(key, value);
+    }
 
     // Input expense into database
     try {
-      const response = await editExpenses(payload, id as string); // Ensure `id` is a string
+      const response = await editExpenses(formData, id as string);
       console.log(`Response from API: ${response.data}`);
       alert("Expense Update Successfully!");
     } catch (error) {
@@ -177,13 +177,25 @@ const EditExpenses: React.FC = () => {
               Save
             </button>
           </div>
+          {/* disini */}
+          <div className="w-[26.302vw] h-[32.76vw] bg-[#E2ECEA] text-[1.042vw] mb-[4.1vw] flex items-center justify-center rounded-[0.521vw] ml-[0.5vw]">
+            <div className="flex flex-col items-center justify-center">
+              <input
+                type="file"
+                id="invoiceFile"
+                name="invoiceFile"
+                className="hidden"
+              />
+              <label
+                htmlFor="invoiceFile"
+                className="cursor-pointer flex flex-col items-center"
+              >
+                <FaPlus className="text-[4vw]" />
+                <h1 className="text-[1vw]">Upload an Invoice</h1>
+              </label>
+            </div>
+          </div>
         </form>
-      </div>
-      <div className="w-[26.302vw] h-[32.76vw] bg-[#E2ECEA] text-[1.042vw] mb-[4.1vw] flex items-center justify-center rounded-[0.521vw]">
-        <button className="flex flex-col items-center justify-center">
-          <FaPlus className="text-[4vw]" />
-          <h1>Upload an Invoice</h1>
-        </button>
       </div>
     </section>
   );
