@@ -62,37 +62,26 @@ const InputExpensesPage = () => {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
   
-    const formElements = event.currentTarget.elements as typeof event.currentTarget.elements & {
-      subject: HTMLInputElement;
-      merchant: HTMLInputElement;
-      date: HTMLInputElement;
-      total: HTMLInputElement;
-      reimburse: HTMLInputElement;
-      category: HTMLInputElement;
-      description: HTMLInputElement;
-      paymentMethod: HTMLInputElement;
-      invoiceFile: HTMLInputElement;
-    };
+    const formData = new FormData(event.currentTarget);
   
-    if (!formElements.invoiceFile || !formElements.invoiceFile.files?.[0]) {
-      alert("Please select an invoice file before submitting.");
+    // Handle checkbox explicitly
+    const reimburseChecked = (event.currentTarget.elements.namedItem("reimburse") as HTMLInputElement)?.checked;
+    formData.set("reimbursable", reimburseChecked ? "true" : "false");
+  
+    // Debug: Log all FormData entries
+    for (const [key, value] of formData.entries()) {
+      console.log(key, value);
+    }
+  
+    // Ensure file is uploaded
+    const fileInput = formData.get("invoiceFile") as File | null;
+    if (!fileInput) {
+      alert("Please upload an invoice file before submitting.");
       return;
     }
   
-    const formData = new FormData();
-    formData.append("subject", formElements.subject.value);
-    formData.append("merchant", formElements.merchant.value);
-    formData.append("date", formElements.date.value);
-    formData.append("total", formElements.total.value);
-    formData.append("reimbuse", formElements.reimburse.checked.toString());
-    formData.append("category", formElements.category.value);
-    formData.append("description", formElements.description.value);
-    formData.append("payment_method", formElements.paymentMethod.value);
-    formData.append("image", formElements.invoiceFile.files[0]);
-    console.log(formData);
-  
     try {
-      const result = await postExpenses(formData);
+      const result = await postExpenses(formData); // Ensure `postExpenses` handles FormData correctly
       console.log("Expense added successfully:", result);
       alert("Expense added successfully!");
     } catch (error) {
