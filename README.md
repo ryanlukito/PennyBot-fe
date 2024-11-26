@@ -23,7 +23,7 @@ Penny Track merupakan website sederhana untuk membantu user menuliskan seluruh t
 
 ## Link Website
 
-[Penny Track](ambagandalf.site)
+[Penny Track](https://ambagandalf.site)
 
 ## Insight
 
