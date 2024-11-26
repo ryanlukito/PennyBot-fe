@@ -8,10 +8,31 @@ import { editExpenses, getExactExpense } from "@/app/connections/connectToDB";
 import { EditExpensesPayload } from "@/app/typesCollections/types";
 import { useSearchParams } from "next/navigation";
 
+interface ExpenseItem {
+  _id: string;
+  subject: string;
+  merchant: string;
+  date: string;
+  total: number;
+  reimbuse: boolean;
+  category: string;
+  description: string;
+  payment_method: string;
+  invoice: string;
+  userID: string;
+  createdAt: string;
+  updatedAt: string;
+  __v: number;
+}
+
+interface ExpenseData {
+  item: ExpenseItem;
+}
+
 const EditExpenses: React.FC = () => {
   const searchParams = useSearchParams();
   const id = searchParams.get("id");
-  const [expenseData, setExpenseData] = useState();
+  const [expenseData, setExpenseData] = useState<ExpenseData | null>(null);
 
   useEffect(() => {
     if (!id) {
@@ -81,6 +102,7 @@ const EditExpenses: React.FC = () => {
                 className="bg-[#E2ECEA] w-[31.771vw] h-[2.396vw] rounded-[0.521vw] px-[1vw]"
                 id="subject"
                 name="subject"
+                placeholder={expenseData?.item?.subject || ""}
               />
             </div>
             <div className="flex justify-between items-center">
@@ -90,6 +112,7 @@ const EditExpenses: React.FC = () => {
                 className="bg-[#E2ECEA] w-[31.771vw] h-[2.396vw] rounded-[0.521vw] px-[1vw]"
                 id="merchant"
                 name="merchant"
+                placeholder={expenseData?.item?.merchant || ""}
               />
             </div>
             <div className="flex justify-between items-center">
@@ -99,6 +122,7 @@ const EditExpenses: React.FC = () => {
                 className="bg-[#E2ECEA] w-[31.771vw] h-[2.396vw] rounded-[0.521vw] px-[1vw]"
                 id="date"
                 name="date"
+                placeholder={expenseData?.item?.date || ""}
               />
             </div>
             <div className="flex justify-between items-center">
@@ -108,6 +132,7 @@ const EditExpenses: React.FC = () => {
                 className="bg-[#E2ECEA] w-[31.771vw] h-[2.396vw] rounded-[0.521vw] px-[1vw]"
                 id="total"
                 name="total"
+                placeholder={expenseData?.item?.total?.toString() || ""}
               />
             </div>
             <div className="px-[7.5vw]">
@@ -123,6 +148,7 @@ const EditExpenses: React.FC = () => {
                 className="bg-[#E2ECEA] w-[31.771vw] h-[2.396vw] rounded-[0.521vw] px-[1vw]"
                 id="category"
                 name="category"
+                placeholder={expenseData?.item?.category || ""}
               />
             </div>
             <div className="flex justify-between items-center">
@@ -131,6 +157,7 @@ const EditExpenses: React.FC = () => {
                 className="bg-[#E2ECEA] w-[31.771vw] h-[5.938vw] rounded-[0.521vw] px-[1vw] resize-none"
                 id="description"
                 name="description"
+                placeholder={expenseData?.item?.description || ""}
               />
             </div>
             <div className="flex justify-between items-center">
@@ -143,6 +170,7 @@ const EditExpenses: React.FC = () => {
                 className="bg-[#E2ECEA] w-[31.771vw] h-[2.396vw] rounded-[0.521vw] px-[1vw]"
                 id="paymentMethod"
                 name="paymentMethod"
+                placeholder={expenseData?.item?.payment_method || ""}
               />
             </div>
             <button className="w-[8.177vw] h-[2.865vw] font-bold text-[1.042vw] rounded-[0.521vw] bg-[#22B786] text-white hover:scale-[102%] ease-in-out duration-300 ml-[7.7vw]">
