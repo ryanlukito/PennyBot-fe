@@ -1,21 +1,31 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 // import { useParams } from "next/navigation";
 import NavBar from "@/app/components/NavBar";
 import { FaPlus } from "react-icons/fa";
-import { editExpenses } from "@/app/connections/connectToDB";
+import { editExpenses, getExactExpense } from "@/app/connections/connectToDB";
 import { EditExpensesPayload } from "@/app/typesCollections/types";
 import { useSearchParams } from "next/navigation";
 
 const EditExpenses: React.FC = () => {
   const searchParams = useSearchParams();
   const id = searchParams.get("id");
+  const [expenseData, setExpenseData] = useState();
 
-  if (!id) {
-    alert("No Expense ID provided.");
-    return;
-  }
+  useEffect(() => {
+    if (!id) {
+      alert("No Expense ID provided.");
+    } else {
+      const fetchData = async () => {
+        const data = await getExactExpense(id);
+        setExpenseData(data);
+      };
+      fetchData();
+    }
+  }, [id]);
+
+  console.log(expenseData);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
