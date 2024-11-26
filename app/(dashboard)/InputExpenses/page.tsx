@@ -6,11 +6,63 @@ import { FaPlus } from "react-icons/fa6";
 import { postExpenses } from "@/app/connections/connectToDB";
 
 const InputExpensesPage = () => {
+  // the old one
+  // const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+  //   event.preventDefault();
+
+  //   const formElements = event.currentTarget
+  //     .elements as typeof event.currentTarget.elements & {
+  //     subject: HTMLInputElement;
+  //     merchant: HTMLInputElement;
+  //     date: HTMLInputElement;
+  //     total: HTMLInputElement;
+  //     reimburse: HTMLInputElement;
+  //     category: HTMLInputElement;
+  //     description: HTMLInputElement;
+  //     paymentMethod: HTMLInputElement;
+  //     invoiceFile: HTMLInputElement;
+  //   };
+
+  //   console.log("Form elements:", formElements);
+
+  //   // Check if the file input exists
+  //   if (!formElements.invoiceFile) {
+  //     console.error("File input is missing.");
+  //     return alert("File input field is not found.");
+  //   }
+
+  //   // Check if a file has been selected
+  //   if (!formElements.invoiceFile.files || !formElements.invoiceFile.files[0]) {
+  //     console.error("No file selected for upload.");
+  //     return alert("Please select a file before submitting.");
+  //   }
+
+  //   // Create FormData
+  //   const formData = new FormData();
+  //   formData.append("subject", formElements.subject.value);
+  //   formData.append("merchant", formElements.merchant.value);
+  //   formData.append("date", formElements.date.value);
+  //   formData.append("total", formElements.total.value);
+  //   formData.append("reimbuse", formElements.reimburse.checked.toString());
+  //   formData.append("category", formElements.category.value);
+  //   formData.append("description", formElements.description.value);
+  //   formData.append("payment_method", formElements.paymentMethod.value);
+  //   formData.append("image", formElements.invoiceFile.files[0]);
+  //   console.log(formData);
+  //   try {
+  //     const response = await postExpenses(formData);
+  //     console.log(`Response from API: ${response}`);
+  //     alert("Expense Added Successfully!");
+  //   } catch (error) {
+  //     console.error("Error logging expense:", error);
+  //     alert("Expense Added Failed");
+  //   }
+  // };
+
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-
-    const formElements = event.currentTarget
-      .elements as typeof event.currentTarget.elements & {
+  
+    const formElements = event.currentTarget.elements as typeof event.currentTarget.elements & {
       subject: HTMLInputElement;
       merchant: HTMLInputElement;
       date: HTMLInputElement;
@@ -21,22 +73,12 @@ const InputExpensesPage = () => {
       paymentMethod: HTMLInputElement;
       invoiceFile: HTMLInputElement;
     };
-
-    console.log("Form elements:", formElements);
-
-    // Check if the file input exists
-    if (!formElements.invoiceFile) {
-      console.error("File input is missing.");
-      return alert("File input field is not found.");
+  
+    if (!formElements.invoiceFile || !formElements.invoiceFile.files?.[0]) {
+      alert("Please select an invoice file before submitting.");
+      return;
     }
-
-    // Check if a file has been selected
-    if (!formElements.invoiceFile.files || !formElements.invoiceFile.files[0]) {
-      console.error("No file selected for upload.");
-      return alert("Please select a file before submitting.");
-    }
-
-    // Create FormData
+  
     const formData = new FormData();
     formData.append("subject", formElements.subject.value);
     formData.append("merchant", formElements.merchant.value);
@@ -47,16 +89,19 @@ const InputExpensesPage = () => {
     formData.append("description", formElements.description.value);
     formData.append("payment_method", formElements.paymentMethod.value);
     formData.append("image", formElements.invoiceFile.files[0]);
+
     console.log(formData);
+  
     try {
-      const response = await postExpenses(formData);
-      console.log(`Response from API: ${response}`);
-      alert("Expense Added Successfully!");
+      const result = await postExpenses(formData);
+      console.log("Expense added successfully:", result);
+      alert("Expense added successfully!");
     } catch (error) {
-      console.error("Error logging expense:", error);
-      alert("Expense Added Failed");
+      console.error("Error adding expense:", error);
+      alert("Failed to add expense. Please try again.");
     }
   };
+  
 
   return (
     <section className="bg-[#fff] w-screen h-screen relative text-black flex items-center">
