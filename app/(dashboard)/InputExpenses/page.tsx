@@ -184,8 +184,8 @@ const InputExpensesPage = () => {
               <input
                 type="text"
                 className="bg-[#E2ECEA] w-[31.771vw] h-[2.396vw] rounded-[0.521vw] px-[1vw]"
-                id="paymentMethod"
-                name="paymentMethod"
+                id="payment_method"
+                name="payment_method"
                 required
               />
             </div>
